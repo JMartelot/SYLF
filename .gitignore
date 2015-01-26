@@ -59,6 +59,7 @@ Thumbs.db
 .project
 local.properties
 .svn
+project.properties
 
 # Libs Sherlock #
 #################
