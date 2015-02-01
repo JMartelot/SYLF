@@ -66,7 +66,7 @@ public class ShowListFragment extends Fragment
             ViewGroup container,
             Bundle savedInstanceState) {
 
-         view = inflater.inflate(R.layout.fragment_show_list, null);
+        view = inflater.inflate(R.layout.fragment_show_list, null);
          
         ListView lv = (ListView)view.findViewById(R.id.liste_show);
         
@@ -81,7 +81,7 @@ public class ShowListFragment extends Fragment
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                     long id) {
                 
-             // Create new fragment and transaction
+                // Create new fragment and transaction
                 Fragment newFragment = new ShowShowFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
 

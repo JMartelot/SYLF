@@ -28,15 +28,15 @@ public class GenreFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_genre, container, false);
         
 
-      FragmentTransaction transaction = getFragmentManager()
-              .beginTransaction();
-      /*
-       * When this container fragment is created, we fill it with our first
-       * "real" fragment
-       */
-      transaction.replace(R.id.category_fragment_list, new GenreListFragment());
+        FragmentTransaction transaction = getFragmentManager()
+          .beginTransaction();
+        /*
+         * When this container fragment is created, we fill it with our first
+         * "real" fragment
+         */
+        transaction.replace(R.id.genre_fragment_list, new GenreListFragment());
 
-      transaction.commit();
+        transaction.commit();
 
         return view;
     }

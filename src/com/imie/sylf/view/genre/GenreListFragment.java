@@ -19,17 +19,21 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
 import com.imie.sylf.adapter.genre.GenreAdapter;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
+import com.imie.sylf.view.show.ShowListFragment;
 
 /** Genre list fragment.
  *
@@ -52,10 +56,37 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
             Bundle savedInstanceState) {
         
         view = inflater.inflate(R.layout.fragment_genre_list, null);
-
+        
+        ListView lv = (ListView)view.findViewById(R.id.liste_genre);
+        
+        if (lv.getAdapter() == null){
+            
+        }
+        
         WebServices ws = new WebServices(this.getActivity());
         ws.parser = this;
         ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
+        
+        lv.setOnItemClickListener(new OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                    long id) {
+                
+                // Create new fragment and transaction
+                Fragment newFragment = new ShowListFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack
+                transaction.replace(R.id.genre_fragment_list, newFragment);
+                transaction.addToBackStack(null);
+
+                // Commit the transaction
+                transaction.commit();
+            }
+            
+        });
 
         return view;
     }
