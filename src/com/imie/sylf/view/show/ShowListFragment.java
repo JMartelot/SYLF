@@ -17,10 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.imie.sylf.util.Parser;
-import com.imie.sylf.util.WebServices;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -32,11 +28,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.imie.sylf.HomeActivity;
 import com.imie.sylf.R;
-import com.imie.sylf.adapter.genre.GenreAdapter;
 import com.imie.sylf.adapter.show.ShowAdapter;
+import com.imie.sylf.entity.Genre;
 import com.imie.sylf.entity.Show;
+import com.imie.sylf.util.Parser;
+import com.imie.sylf.util.WebServices;
 
 /** Show list fragment.
  *
@@ -59,6 +56,7 @@ public class ShowListFragment extends Fragment
     private List<Show> showList = new ArrayList<Show>();
     private JSONArray shows = null;
     private View view = null;
+    private ShowAdapter adapter = null;
 
     @Override
     public View onCreateView(
@@ -67,13 +65,21 @@ public class ShowListFragment extends Fragment
             Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_show_list, null);
-         
+        
+        Genre genre = (Genre) getArguments().getSerializable("GENRE");
+
         ListView lv = (ListView)view.findViewById(R.id.liste_show);
         
-        WebServices ws = new WebServices(this.getActivity());
-        ws.parser = this;
-        ws.execute("http://api.themoviedb.org/3/discover/tv?api_key=0d2d4cca633bc7bc04a564ac8266d3a1&sort_by=popularity.desc");
-        
+        if (this.adapter == null){
+            String url = "http://api.themoviedb.org/3/discover/tv?api_key=0d2d4cca633bc7bc04a564ac8266d3a1&sort_by=popularity.desc&with_genres="+ genre.getId();
+            
+            WebServices ws = new WebServices(this.getActivity());
+            ws.parser = this;
+            ws.execute(url);
+            
+        }else{
+            lv.setAdapter(adapter);
+        }
         
         lv.setOnItemClickListener(new OnItemClickListener(){
 
@@ -141,7 +147,7 @@ public class ShowListFragment extends Fragment
     @Override
     public void addDataBase(List<Show> liste) {
 
-        ShowAdapter adapter = new ShowAdapter(this.getActivity(), liste);
+        this.adapter = new ShowAdapter(this.getActivity(), liste);
         // Attach the adapter to a ListView
         ListView listView = (ListView) view.findViewById(R.id.liste_show);
         listView.setAdapter(adapter);

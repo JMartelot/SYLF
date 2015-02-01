@@ -45,9 +45,12 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
     
 
     private static final String TAG_NAME = "name";
+    private static final String TAG_ID = "id";
     private List<Genre> genreList = new ArrayList<Genre>();
-    JSONArray genres = null;
+    private JSONArray genres = null;
     private View view = null;
+    private GenreAdapter adapter = null;
+    private ListView lv = null;
 
     @Override
     public View onCreateView(
@@ -57,15 +60,15 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         
         view = inflater.inflate(R.layout.fragment_genre_list, null);
         
-        ListView lv = (ListView)view.findViewById(R.id.liste_genre);
+        this.lv = (ListView)view.findViewById(R.id.liste_genre);
         
-        if (lv.getAdapter() == null){
-            
+        if(this.adapter == null){
+            WebServices ws = new WebServices(this.getActivity());
+            ws.parser = this;
+            ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
+        }else{
+            lv.setAdapter(adapter);
         }
-        
-        WebServices ws = new WebServices(this.getActivity());
-        ws.parser = this;
-        ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
         
         lv.setOnItemClickListener(new OnItemClickListener(){
 
@@ -73,8 +76,16 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                     long id) {
                 
+                Genre genre = (Genre) lv.getItemAtPosition(position);
+                
                 // Create new fragment and transaction
                 Fragment newFragment = new ShowListFragment();
+                
+                Bundle b = new Bundle();
+                b.putSerializable("GENRE", genre);
+                
+                newFragment.setArguments(b);
+                
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                 // Replace whatever is in the fragment_container view with this fragment,
@@ -106,8 +117,10 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
                     Genre genre = new Genre();   
                      
                     String name = c.getString(TAG_NAME);
+                    String id = c.getString(TAG_ID);
 
                     genre.setTitle(name);
+                    genre.setId(Integer.parseInt(id));
 
                     genreList.add(genre);
                 }
@@ -123,10 +136,12 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
     
     @Override
     public void addDataBase(List liste) {
-
-        GenreAdapter adapter = new GenreAdapter(this.getActivity(), liste);
+        
+        this.adapter = new GenreAdapter(this.getActivity(), liste);
+        
         // Attach the adapter to a ListView
         ListView listView = (ListView) view.findViewById(R.id.liste_genre);
+        
         listView.setAdapter(adapter);
     }
 }
