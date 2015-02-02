@@ -43,16 +43,16 @@ public class TabSwipeActivity extends SherlockFragmentActivity {
      * @param fragmentClass The class of the Fragment to instantiate for this tab
      * @param args An optional Bundle to pass along to the Fragment (may be null)
      */
-    protected void addTab(int titleRes, Class fragmentClass, Bundle args ) {
-        adapter.addTab( getString( titleRes ), fragmentClass, args );
-    }
+//    protected void addTab(int titleRes, Class fragmentClass, Bundle args ) {
+//        adapter.addTab( titleRes , fragmentClass, args );
+//    }
     /**
      * Add a tab with a backing Fragment to the action bar
      * @param titleRes A string to be used as the title for the tab
      * @param fragmentClass The class of the Fragment to instantiate for this tab
      * @param args An optional Bundle to pass along to the Fragment (may be null)
      */
-    protected void addTab(CharSequence title, Class fragmentClass, Bundle args ) {
-        adapter.addTab( title, fragmentClass, args );
+    protected void addTab(int res, Class fragmentClass, Bundle args ) {
+        adapter.addTab( res, fragmentClass, args );
     }
 }

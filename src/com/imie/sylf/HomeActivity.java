@@ -18,10 +18,10 @@ public class HomeActivity extends TabSwipeActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
                     
-        addTab( getText(R.string.random), RandomFragment.class, null );
-        addTab( getText(R.string.pref), PreferenceFragment.class,null );
-        addTab( getText(R.string.category), GenreFragment.class, null ); 
-        addTab( getText(R.string.profil), ProfilFragment.class, ProfilFragment.createBundle((String) getText(R.string.profil)) );
+        addTab( R.drawable.random, RandomFragment.class, null );
+        addTab( R.drawable.favorite, PreferenceFragment.class,null );
+        addTab( R.drawable.genre, GenreFragment.class, null ); 
+        addTab( R.drawable.profil, ProfilFragment.class, ProfilFragment.createBundle((String) getText(R.string.profil)) );
     }
     
 }

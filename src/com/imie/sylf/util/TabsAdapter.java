@@ -44,11 +44,12 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
         }
     }
 
-    public void addTab( CharSequence title, Class fragmentClass, Bundle args ) {
+    public void addTab( int resId, Class fragmentClass, Bundle args ) {
         final TabInfo tabInfo = new TabInfo( fragmentClass, args );
 
         Tab tab = mActionBar.newTab();
-        tab.setText( title );
+        //tab.setText( title );
+        tab.setIcon(resId);
         tab.setTabListener( this );
         tab.setTag( tabInfo );
 
