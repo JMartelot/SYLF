@@ -28,15 +28,16 @@ public class RandomFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_random, container, false);
         
 
-      FragmentTransaction transaction = getFragmentManager()
-              .beginTransaction();
-      /*
-       * When this container fragment is created, we fill it with our first
-       * "real" fragment
-       */
-      transaction.replace(R.id.random_fragment_list, new ShowListFragment());
-
-      transaction.commit();
+//      FragmentTransaction transaction = getFragmentManager()
+//              .beginTransaction();
+//      /*
+//       * When this container fragment is created, we fill it with our first
+//       * "real" fragment
+//       */
+//      transaction.replace(R.id.random_fragment_list, new ShowListFragment());
+//      transaction.addToBackStack(null);
+//
+//      transaction.commit();
 
         return view;
     }

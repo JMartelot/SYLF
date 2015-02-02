@@ -30,7 +30,7 @@ public class PreferenceFragment extends Fragment {
         TextSliderView demoSlider = new TextSliderView(this.getActivity());
         demoSlider.description("Game of Thrones")
                   .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-        //mDemoSlider.addSlider(demoSlider);
+//        mDemoSlider.addSlider(demoSlider);
         
         return view;
     }
