@@ -44,6 +44,7 @@ import com.imie.sylf.util.WebServices;
 public class ShowListFragment extends Fragment
         implements Parser<Show>{
 
+    private static final String TAG_ID = "id";
     private static final String TAG_ORIGINAL_NAME = "original_name";
     private static final String TAG_NAME = "name";
     private static final String TAG_FIRST_AIR_DATE = "first_air_date";
@@ -57,6 +58,7 @@ public class ShowListFragment extends Fragment
     private JSONArray shows = null;
     private View view = null;
     private ShowAdapter adapter = null;
+    private ListView lv = null;
 
     @Override
     public View onCreateView(
@@ -71,7 +73,7 @@ public class ShowListFragment extends Fragment
         
         Genre genre = (Genre) getArguments().getSerializable("GENRE");
 
-        ListView lv = (ListView)view.findViewById(R.id.liste_show);
+        this.lv = (ListView)view.findViewById(R.id.liste_show);
         
         if (this.adapter == null){
             String url = "http://api.themoviedb.org/3/discover/tv?api_key=0d2d4cca633bc7bc04a564ac8266d3a1&sort_by=popularity.desc&with_genres="+ genre.getId();
@@ -81,17 +83,25 @@ public class ShowListFragment extends Fragment
             ws.execute(url);
             
         }else{
-            lv.setAdapter(adapter);
+            this.lv.setAdapter(adapter);
         }
         
-        lv.setOnItemClickListener(new OnItemClickListener(){
+        this.lv.setOnItemClickListener(new OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                     long id) {
                 
+                Show show = (Show) ShowListFragment.this.lv.getItemAtPosition(position);
+                
                 // Create new fragment and transaction
                 Fragment newFragment = new ShowShowFragment();
+                
+                Bundle b = new Bundle();
+                b.putSerializable("SHOW", show);
+                
+                newFragment.setArguments(b);
+                
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                 // Replace whatever is in the fragment_container view with this fragment,
@@ -121,7 +131,8 @@ public class ShowListFragment extends Fragment
                 for (int i = 0; i < shows.length(); i++) {
                     JSONObject c = shows.getJSONObject(i);
                     Show show = new Show();   
-                     
+
+                    String id = c.getString(TAG_ID);
                     String name = c.getString(TAG_NAME);
                     String original_name = c.getString(TAG_ORIGINAL_NAME);
                     String country = c.getString(TAG_ORIGIN_COUNTRY);
@@ -131,10 +142,10 @@ public class ShowListFragment extends Fragment
                     String vote = c.getString(TAG_VOTE);
                     String first_air_date = c.getString(TAG_FIRST_AIR_DATE);
 
+                    show.setId(Integer.parseInt(id));
                     show.setTitle(name);
                     show.setPoster("https://image.tmdb.org/t/p/w92".concat(poster));
                     show.setReleased(first_air_date);
-
                     showList.add(show);
                 }
             } catch (JSONException e) {
