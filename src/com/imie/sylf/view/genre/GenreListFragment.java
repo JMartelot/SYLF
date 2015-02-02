@@ -60,6 +60,7 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
                 
         view = inflater.inflate(R.layout.fragment_genre_list, null);
         
+        //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
         
         this.lv = (ListView)view.findViewById(R.id.liste_genre);

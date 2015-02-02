@@ -79,26 +79,15 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
         mActionBar.setSelectedNavigationItem( position );
     }
 
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        TabInfo tabInfo = (TabInfo) tab.getTag();
-        for ( int i = 0; i < mTabs.size(); i++ ) {
-            if ( mTabs.get( i ) == tabInfo ) {
-                mPager.setCurrentItem( i );
-            }
-        }
-    }
-
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-    }
-
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
-    }
-
-	@Override
+    @Override
 	public void onTabSelected(Tab tab,
 			android.support.v4.app.FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
+            TabInfo tabInfo = (TabInfo) tab.getTag();
+            for ( int i = 0; i < mTabs.size(); i++ ) {
+                if ( mTabs.get( i ) == tabInfo ) {
+                    mPager.setCurrentItem( i );
+                }
+            }		
 	}
 
 	@Override
@@ -114,4 +103,5 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
