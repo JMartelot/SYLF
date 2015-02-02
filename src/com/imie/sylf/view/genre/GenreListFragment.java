@@ -57,8 +57,10 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
             LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState) {
-        
+                
         view = inflater.inflate(R.layout.fragment_genre_list, null);
+        
+        setRetainInstance(true);
         
         this.lv = (ListView)view.findViewById(R.id.liste_genre);
         

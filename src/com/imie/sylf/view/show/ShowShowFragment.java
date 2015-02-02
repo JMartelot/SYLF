@@ -158,7 +158,10 @@ public class ShowShowFragment extends Fragment{
                         container,
                         false); 
 
-        this.initializeComponent(view);
+        this.initializeComponent(view);        
+
+        //Permet de conserver le fragment lors d'une rotation
+        setRetainInstance(true);
 
 //        final Intent intent =  getActivity().getIntent();
 //        this.update((Show) intent.getParcelableExtra(ShowContract.PARCEL));

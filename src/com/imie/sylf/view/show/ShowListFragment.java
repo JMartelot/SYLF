@@ -65,6 +65,9 @@ public class ShowListFragment extends Fragment
             Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_show_list, null);
+
+        //Permet de conserver le fragment lors d'une rotation
+        setRetainInstance(true);
         
         Genre genre = (Genre) getArguments().getSerializable("GENRE");
 
