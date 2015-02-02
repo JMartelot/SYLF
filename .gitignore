@@ -65,6 +65,10 @@ project.properties
 #################
 /libs/sherlock/*
 
+#  Libs
+#############
+/libs/AndroidImageSlider/
+
 # Sources and Javadoc Libs
 ##########################
 /libs/docs/*
