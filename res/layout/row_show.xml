@@ -4,17 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="2.5dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="2.5dp" >
+    android:padding="15dp" >
 
     <ImageView
         android:id="@+id/android_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:cropToPadding="true"
-        android:src="@drawable/ic_launcher" />
+        android:cropToPadding="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,8 +31,7 @@
         <!--
         <TextView
             android:id="@+id/row_show_poster"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent" />
         -->
 
     </LinearLayout>
