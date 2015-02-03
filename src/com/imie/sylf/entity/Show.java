@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Show implements Serializable {
+    
     protected int id;
 
     protected String title;
@@ -22,7 +23,19 @@ public class Show implements Serializable {
 
     protected String poster;
     
+    private String backdrop_path;
+    
+    private int in_production;
+    
+    private int vote_average;
+    
+    private int vote_count;
+    
     protected ArrayList<Genre> genres;
+    
+    private ArrayList<Author> authors;
+    
+    private ArrayList<String> languages;
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -31,13 +44,6 @@ public class Show implements Serializable {
     public String toString() {
         // TODO Auto-generated method stub
         return this.title;
-    }
-
-    /**
-     * Default constructor.
-     */
-    public Show() {
-
     }
 
     /**
@@ -179,4 +185,85 @@ public class Show implements Serializable {
     public void setGenres(final ArrayList<Genre> value) {
          this.genres = value;
     }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
+    public int getIn_production() {
+        return in_production;
+    }
+
+    public void setIn_production(int in_production) {
+        this.in_production = in_production;
+    }
+
+    public int getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(int vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(ArrayList<Author> authors) {
+        this.authors = authors;
+    }
+
+    public ArrayList<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(ArrayList<String> languages) {
+        this.languages = languages;
+    }
+
+    public Show(int id, String title, String plot, String runtime,
+            String released, String actors, String writers, String directors,
+            String poster, String backdrop_path, int in_production,
+            int vote_average, int vote_count, ArrayList<Genre> genres,
+            ArrayList<Author> authors, ArrayList<String> languages) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.plot = plot;
+        this.runtime = runtime;
+        this.released = released;
+        this.actors = actors;
+        this.writers = writers;
+        this.directors = directors;
+        this.poster = poster;
+        this.backdrop_path = backdrop_path;
+        this.in_production = in_production;
+        this.vote_average = vote_average;
+        this.vote_count = vote_count;
+        this.genres = genres;
+        this.authors = authors;
+        this.languages = languages;
+    }
+    
+
+    /**
+     * Default constructor.
+     */
+    public Show() {
+
+    }
+    
 }
