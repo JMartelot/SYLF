@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.imie.sylf.R;
+import com.imie.sylf.entity.Author;
+import com.imie.sylf.entity.Season;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.util.Parser;
@@ -67,22 +69,47 @@ public class ShowShowFragment extends Fragment
     /** Text view for no Show. */
     protected TextView emptyText;
     
-    /**Constante pour récupérer les tag du flux JSON renvoyé apr le webservice*/
+    /**Constante pour récupérer les tag du flux JSON renvoyé par le webservice*/
     private static final String TAG_ID = "id";
-    private static final String TAG_ORIGINAL_NAME = "original_name";
     private static final String TAG_NAME = "name";
     private static final String TAG_FIRST_AIR_DATE = "first_air_date";
-    private static final String TAG_ORIGIN_COUNTRY = "origin_country";
     private static final String TAG_POSTER = "poster_path";
-    private static final String TAG_POPULARITY = "popularity";
-    private static final String TAG_NOTE = "vote_average";
-    private static final String TAG_VOTE = "vote_count";
-    private static final String TAG_PLOT = "vote_count";
+    private static final String TAG_BACKDROP = "backdrop_path";
+    private static final String TAG_RUNTIME = "episode_run_time";
+    private static final String TAG_PLOT = "overview";
+    private static final String TAG_VOTE_AVERAGE = "vote_average";
+    private static final String TAG_VOTE_COUNT = "vote_count";
+    private static final String TAG_IN_PRODUCTION = "in_production";
     
+    /** Genres */
+    private static final String TAG_GENRES = "genres";
+    private static final String TAG_ID_GENRE = "id";
+    private static final String TAG_NAME_GENRE = "name";
+    
+    /** Show TV's Season */
+    private static final String TAG_SEASONS = "seasons";
+    private static final String TAG_AIR_DATE_SEASON = "air_date";
+    private static final String TAG_NB_EPISODE_SEASON = "episode_count";
+    private static final String TAG_ID_SEASON = "id";
+    private static final String TAG_POSTER_PATH_SEASON = "poster_path";
+    private static final String TAG_SEASON_NB = "season_number";    
+    
+    /** Show TV's Author */
+    private static final String TAG_AUTHOR = "created_by";    
+    private static final String TAG_ID_AUTHOR = "id";
+    private static final String TAG_NAME_AUTHOR = "name";
+    private static final String TAG_PROFIL_AUTHOR = "profile_path";
+    
+    private ArrayList<Author> authorList = new ArrayList<Author>();
+    private JSONArray authors = null;    
 
-    private List<Show> showList = new ArrayList<Show>();
-    private JSONArray shows = null;
+    private ArrayList<Genre> genreList = new ArrayList<Genre>();
+    private JSONArray genres = null;    
 
+    private ArrayList<Season> seasonList = new ArrayList<Season>();
+    private JSONArray seasons = null;
+    
+    private Show show = new Show();
 
     /** Initialize view of curr.fields.
      *
@@ -208,29 +235,52 @@ public class ShowShowFragment extends Fragment
                 JSONObject jsonObj = new JSONObject(stream);
                  
                 // Getting JSON Array node
-                 shows = jsonObj.getJSONArray("results");
-
-                // looping through All Contacts
-                for (int i = 0; i < shows.length(); i++) {
-                    JSONObject c = shows.getJSONObject(i);
-                    Show show = new Show();   
-
-                    String id = c.getString(TAG_ID);
-                    String name = c.getString(TAG_NAME);
-                    String original_name = c.getString(TAG_ORIGINAL_NAME);
-                    String country = c.getString(TAG_ORIGIN_COUNTRY);
-                    String popularity = c.getString(TAG_POPULARITY);
-                    String poster = c.getString(TAG_POSTER);
-                    String note = c.getString(TAG_NOTE);
-                    String vote = c.getString(TAG_VOTE);
-                    String first_air_date = c.getString(TAG_FIRST_AIR_DATE);
-
-                    show.setId(Integer.parseInt(id));
-                    show.setTitle(name);
-                    show.setPoster("https://image.tmdb.org/t/p/w92".concat(poster));
-                    show.setReleased(first_air_date);
-                    showList.add(show);
+                authors = jsonObj.getJSONArray(TAG_AUTHOR);
+                genres = jsonObj.getJSONArray(TAG_GENRES);
+                seasons = jsonObj.getJSONArray(TAG_SEASONS);
+                
+                for (int i = 0; i < authors.length(); i++) {
+                    JSONObject a = authors.getJSONObject(i);
+                    Author author = new Author( a.getInt(TAG_ID_AUTHOR), 
+                                                a.getString(TAG_NAME_AUTHOR), 
+                                                a.getString(TAG_PROFIL_AUTHOR));
+                    
+                    authorList.add(author);
                 }
+                
+                for (int i = 0; i < genres.length(); i++) {
+                    JSONObject g = genres.getJSONObject(i);
+                    Genre genre = new Genre(g.getInt(TAG_ID_GENRE),g.getString(TAG_NAME_GENRE));
+                    
+                    genreList.add(genre);
+                }
+
+                for (int i = 0; i < seasons.length(); i++) {
+                    JSONObject s = seasons.getJSONObject(i);
+                    Season season = new Season( s.getInt(TAG_ID_SEASON),
+                                                s.getString(TAG_AIR_DATE_SEASON), 
+                                                s.getInt(TAG_NB_EPISODE_SEASON),
+                                                s.getString(TAG_POSTER_PATH_SEASON),
+                                                s.getInt(TAG_SEASON_NB),
+                                                s.getInt(TAG_ID));
+                    
+                    seasonList.add(season);
+                }
+                
+                show.setId(jsonObj.getInt(TAG_ID));
+                show.setTitle(jsonObj.getString(TAG_NAME));
+                show.setPlot(jsonObj.getString(TAG_PLOT));
+                show.setRuntime(jsonObj.getString(TAG_RUNTIME));
+                show.setReleased(jsonObj.getString(TAG_FIRST_AIR_DATE));
+                show.setPoster(jsonObj.getString(TAG_POSTER));
+                show.setBackdrop_path(jsonObj.getString(TAG_BACKDROP));
+                show.setIn_production(jsonObj.getBoolean(TAG_IN_PRODUCTION));
+                show.setVote_average(jsonObj.getDouble(TAG_VOTE_AVERAGE));
+                show.setVote_count(jsonObj.getInt(TAG_VOTE_COUNT));
+                show.setGenres(genreList);
+                show.setAuthors(authorList);
+                show.setSeasons(seasonList);
+                
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -238,15 +288,22 @@ public class ShowShowFragment extends Fragment
             Log.e("ServiceHandler", "Couldn't get any data from the url");
         }
         
-        addDataBase(showList);
+        entityPopulate(show);
         
     }
 
     @Override
-    public void addDataBase(List<Show> liste) {
+    public void listPopulate(List<Show> liste) {
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void entityPopulate(Show entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 }
 

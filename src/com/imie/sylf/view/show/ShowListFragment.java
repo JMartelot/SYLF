@@ -155,16 +155,22 @@ public class ShowListFragment extends Fragment
             Log.e("ServiceHandler", "Couldn't get any data from the url");
         }
         
-        addDataBase(showList);
+        listPopulate(showList);
     }
     
     @Override
-    public void addDataBase(List<Show> liste) {
+    public void listPopulate(List<Show> liste) {
 
         this.adapter = new ShowAdapter(this.getActivity(), liste);
         // Attach the adapter to a ListView
         ListView listView = (ListView) view.findViewById(R.id.liste_show);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void entityPopulate(Show entity) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -134,11 +134,11 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
             Log.e("ServiceHandler", "Couldn't get any data from the url");
         }
         
-        addDataBase(genreList);
+        listPopulate(genreList);
     }
     
     @Override
-    public void addDataBase(List liste) {
+    public void listPopulate(List liste) {
         
         this.adapter = new GenreAdapter(this.getActivity(), liste);
         
@@ -146,5 +146,11 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         ListView listView = (ListView) view.findViewById(R.id.liste_genre);
         
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void entityPopulate(Genre entity) {
+        // TODO Auto-generated method stub
+        
     }
 }

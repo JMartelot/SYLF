@@ -8,7 +8,7 @@ public class Season implements Serializable{
     
     private int id;
     
-    private Date air_date;
+    private String air_date;
     
     private int nb_episode;
     
@@ -26,11 +26,11 @@ public class Season implements Serializable{
         this.id = id;
     }
 
-    public Date getAir_date() {
+    public String getAir_date() {
         return air_date;
     }
 
-    public void setAir_date(Date air_date) {
+    public void setAir_date(String air_date) {
         this.air_date = air_date;
     }
 
@@ -66,7 +66,7 @@ public class Season implements Serializable{
         this.tvShow_id = tvShow_id;
     }
 
-    public Season(int id, Date air_date, int nb_episode, String url_poster,
+    public Season(int id, String air_date, int nb_episode, String url_poster,
             int season_nb, int tvShow_id) {
         super();
         this.id = id;
