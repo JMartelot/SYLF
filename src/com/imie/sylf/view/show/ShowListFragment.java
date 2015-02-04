@@ -47,9 +47,9 @@ public class ShowListFragment extends Fragment
     private static final String TAG_ID = "id";
     private static final String TAG_ORIGINAL_NAME = "original_name";
     private static final String TAG_NAME = "name";
+    private static final String TAG_POSTER = "poster_path";
     private static final String TAG_FIRST_AIR_DATE = "first_air_date";
     private static final String TAG_ORIGIN_COUNTRY = "origin_country";
-    private static final String TAG_POSTER = "poster_path";
     private static final String TAG_POPULARITY = "popularity";
     private static final String TAG_NOTE = "vote_average";
     private static final String TAG_VOTE = "vote_count";

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.R.bool;
+import android.graphics.Bitmap;
 
 public class Show implements Serializable {
     
