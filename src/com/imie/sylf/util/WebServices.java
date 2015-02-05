@@ -16,6 +16,8 @@ import com.imie.sylf.R;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -23,9 +25,15 @@ public class WebServices extends AsyncTask<String,Void,String> {
 
     public Parser parser = null;
     Activity context;
+    LinearLayout progressBar = null;
     
     public WebServices(Activity context) {
         this.context = context;
+    }
+    
+    public WebServices(Activity context, LinearLayout progressBar) {
+        this.context = context;
+        this.progressBar = progressBar;
     }
     
     /* (non-Javadoc)
@@ -34,6 +42,11 @@ public class WebServices extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        
+        // Display the progressBar
+        if(progressBar != null){
+        	progressBar.setVisibility(View.VISIBLE);
+        }
     }
     
     @Override
@@ -87,6 +100,12 @@ public class WebServices extends AsyncTask<String,Void,String> {
     protected void onPostExecute(final String result) {
         super.onPostExecute(result);
 
+
+        // Hide the progressBar
+        if(progressBar != null){
+        	progressBar.setVisibility(View.GONE);
+        }
+        
         this.context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
