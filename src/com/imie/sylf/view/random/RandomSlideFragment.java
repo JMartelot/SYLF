@@ -28,7 +28,7 @@ import com.imie.sylf.util.WebServices;
  *
  * @see android.app.Fragment
  */
-public class RandomLatestFragment extends Fragment implements Parser<Show> {
+public class RandomSlideFragment extends Fragment implements Parser<Show> {
     
 
     private static final String TAG_ID = "id";
@@ -45,16 +45,14 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
             ViewGroup container,
             Bundle savedInstanceState) {
                 
-        this.view = inflater.inflate(R.layout.fragment_random_latest, container, false);
-
-        this.inHorizontalScrollView = (LinearLayout) this.view.findViewById(R.id.inhorizontalscrollview);
+        this.view = inflater.inflate(R.layout.fragment_random_slide, container, false);
         
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
         
-        WebServices ws = new WebServices(this.getActivity());
-        ws.parser = this;
-        ws.execute("http://api.themoviedb.org/3/tv/top_rated?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
+//        WebServices ws = new WebServices(this.getActivity());
+//        ws.parser = this;
+//        ws.execute("http://api.themoviedb.org/3/tv/top_rated?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
         
         return this.view;
     }

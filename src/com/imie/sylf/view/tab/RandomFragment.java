@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.imie.sylf.R;
 import com.imie.sylf.view.random.RandomLatestFragment;
+import com.imie.sylf.view.random.RandomSlideFragment;
 
 /** Genre list fragment.
  *
@@ -34,11 +35,12 @@ public class RandomFragment extends Fragment{
        * When this container fragment is created, we fill it with our first
        * "real" fragment
        */
-      transaction.replace(R.id.random_fragment_list, new RandomLatestFragment());
+      transaction.replace(R.id.random_fragment_slide, new RandomSlideFragment());
+      transaction.replace(R.id.random_fragment_latest, new RandomLatestFragment());
       transaction.addToBackStack(null);
 
       transaction.commit();
 
-        return view;
+      return view;
     }
 }
