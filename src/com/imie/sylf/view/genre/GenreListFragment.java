@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.RelativeLayout;
 
 import com.imie.sylf.R;
 import com.imie.sylf.adapter.genre.GenreAdapter;
@@ -63,14 +64,14 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
-        
-        //Display the progressBar
-        LinearLayout progressBar = (LinearLayout) view.findViewById(R.id.genreProgressLayout);
+
+        LinearLayout progressBar = (LinearLayout) view.findViewById(R.id.genreProgressLayout);	
+        RelativeLayout genreContainer = (RelativeLayout) view.findViewById(R.id.genreListContainer);	
         
         this.lv = (ListView)view.findViewById(R.id.liste_genre);
         
         if(this.adapter == null){
-            WebServices ws = new WebServices(this.getActivity(), progressBar);
+            WebServices ws = new WebServices(this.getActivity(), progressBar, genreContainer);
             ws.parser = this;
             ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
         }else{
@@ -156,5 +157,6 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
     public void entityPopulate(Genre entity) {
         // TODO Auto-generated method stub
         
-    }
+    }    
+    
 }
