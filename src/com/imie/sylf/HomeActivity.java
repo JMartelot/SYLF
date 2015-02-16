@@ -21,7 +21,7 @@ public class HomeActivity extends TabSwipeActivity {
         addTab( R.drawable.random, RandomFragment.class, null );
         addTab( R.drawable.favorite, PreferenceFragment.class,null );
         addTab( R.drawable.genre, GenreFragment.class, null ); 
-        addTab( R.drawable.profil, ProfilFragment.class, ProfilFragment.createBundle((String) getText(R.string.profil)) );
+        addTab( R.drawable.profil, ProfilFragment.class, null );
     }
     
 }

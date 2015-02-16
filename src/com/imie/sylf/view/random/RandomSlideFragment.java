@@ -16,11 +16,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.imie.sylf.R;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
-import com.imie.sylf.util.WebServices;
 
 /** Genre list fragment.
  *
@@ -49,6 +50,13 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
+        
+//        mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);
+//
+//        TextSliderView demoSlider = new TextSliderView(this.getActivity());
+//        demoSlider.description("Game of Thrones")
+//                  .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+//        mDemoSlider.addSlider(demoSlider);
         
 //        WebServices ws = new WebServices(this.getActivity());
 //        ws.parser = this;
