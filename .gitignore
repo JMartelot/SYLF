@@ -67,7 +67,7 @@ project.properties
 
 #  Libs
 #############
-/libs/AndroidImageSlider/
+/libs/AndroidImageSlider/*
 
 # Sources and Javadoc Libs
 ##########################
