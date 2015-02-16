@@ -46,7 +46,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null; 
     private SliderLayout mDemoSlider;
-    private Show show = null;
 
     @Override
     public View onCreateView(
@@ -113,6 +112,8 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
             if(i == 5){
                 break;
             }
+            final Show item = show;
+            
             TextSliderView demoSlider = new TextSliderView(this.getActivity());
             demoSlider.description(show.getTitle())
             .image("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
@@ -123,7 +124,7 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
                 @Override
                 public void onSliderClick(BaseSliderView slider) {
                     // TODO Auto-generated method stub
-                    Show show = RandomSlideFragment.this.show;
+                    Show show = item;
                     // Create new fragment and transaction
                     Fragment newFragment = new ShowShowFragment();
                     RandomSlideFragment slide = 
