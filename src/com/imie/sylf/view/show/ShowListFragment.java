@@ -25,7 +25,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
@@ -47,9 +49,9 @@ public class ShowListFragment extends Fragment
     private static final String TAG_ID = "id";
     private static final String TAG_ORIGINAL_NAME = "original_name";
     private static final String TAG_NAME = "name";
+    private static final String TAG_POSTER = "poster_path";
     private static final String TAG_FIRST_AIR_DATE = "first_air_date";
     private static final String TAG_ORIGIN_COUNTRY = "origin_country";
-    private static final String TAG_POSTER = "poster_path";
     private static final String TAG_POPULARITY = "popularity";
     private static final String TAG_NOTE = "vote_average";
     private static final String TAG_VOTE = "vote_count";
@@ -71,6 +73,9 @@ public class ShowListFragment extends Fragment
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
         
+        LinearLayout progressBar = (LinearLayout) view.findViewById(R.id.showProgressLayout);	
+        RelativeLayout showContainer = (RelativeLayout) view.findViewById(R.id.showListContainer);	
+        
         Genre genre = (Genre) getArguments().getSerializable("GENRE");
 
         this.lv = (ListView)view.findViewById(R.id.liste_show);
@@ -78,7 +83,7 @@ public class ShowListFragment extends Fragment
         if (this.adapter == null){
             String url = "http://api.themoviedb.org/3/discover/tv?api_key=0d2d4cca633bc7bc04a564ac8266d3a1&sort_by=popularity.desc&with_genres="+ genre.getId();
             
-            WebServices ws = new WebServices(this.getActivity());
+            WebServices ws = new WebServices(this.getActivity(), progressBar, showContainer);
             ws.parser = this;
             ws.execute(url);
             
