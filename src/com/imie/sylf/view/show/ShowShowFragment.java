@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import com.imie.sylf.entity.Author;
 import com.imie.sylf.entity.Season;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.entity.Genre;
+import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
@@ -42,7 +44,7 @@ import com.imie.sylf.util.WebServices;
  * @see android.app.Fragment
  */
 public class ShowShowFragment extends Fragment
-    implements Parser<Show>{
+implements Parser<Show>{
     /** Model data. */
     protected Show model;
 
@@ -55,21 +57,19 @@ public class ShowShowFragment extends Fragment
     protected TextView runtimeView;
     /** released View. */
     protected TextView releasedView;
-    /** actors View. */
-    protected TextView actorsView;
     /** writers View. */
     protected TextView writersView;
     /** directors View. */
     protected TextView directorsView;
     /** poster View. */
-    protected TextView posterView;
+    protected ImageView posterView;
     /** genres View. */
     protected TextView genresView;
     /** Data layout. */
     protected RelativeLayout dataLayout;
     /** Text view for no Show. */
     protected TextView emptyText;
-    
+
     /**Constante pour récupérer les tag du flux JSON renvoyé par le webservice*/
     private static final String TAG_ID = "id";
     private static final String TAG_NAME = "name";
@@ -81,12 +81,12 @@ public class ShowShowFragment extends Fragment
     private static final String TAG_VOTE_AVERAGE = "vote_average";
     private static final String TAG_VOTE_COUNT = "vote_count";
     private static final String TAG_IN_PRODUCTION = "in_production";
-    
+
     /** Genres */
     private static final String TAG_GENRES = "genres";
     private static final String TAG_ID_GENRE = "id";
     private static final String TAG_NAME_GENRE = "name";
-    
+
     /** Show TV's Season */
     private static final String TAG_SEASONS = "seasons";
     private static final String TAG_AIR_DATE_SEASON = "air_date";
@@ -94,13 +94,13 @@ public class ShowShowFragment extends Fragment
     private static final String TAG_ID_SEASON = "id";
     private static final String TAG_POSTER_PATH_SEASON = "poster_path";
     private static final String TAG_SEASON_NB = "season_number";    
-    
+
     /** Show TV's Author */
     private static final String TAG_AUTHOR = "created_by";    
     private static final String TAG_ID_AUTHOR = "id";
     private static final String TAG_NAME_AUTHOR = "name";
     private static final String TAG_PROFIL_AUTHOR = "profile_path";
-    
+
     private ArrayList<Author> authorList = new ArrayList<Author>();
     private JSONArray authors = null;    
 
@@ -109,7 +109,7 @@ public class ShowShowFragment extends Fragment
 
     private ArrayList<Season> seasonList = new ArrayList<Season>();
     private JSONArray seasons = null;
-    
+
     private Show show = new Show();
 
     /** Initialize view of curr.fields.
@@ -129,23 +129,17 @@ public class ShowShowFragment extends Fragment
         this.releasedView =
                 (TextView) view.findViewById(
                         R.id.show_released);
-        this.actorsView =
-                (TextView) view.findViewById(
-                        R.id.show_actors);
         this.writersView =
                 (TextView) view.findViewById(
                         R.id.show_writers);
-        this.directorsView =
-                (TextView) view.findViewById(
-                        R.id.show_directors);
         this.posterView =
-                (TextView) view.findViewById(
+                (ImageView) view.findViewById(
                         R.id.show_poster);
 
         this.genresView =
                 (TextView) view.findViewById(
                         R.id.show_genres);
-
+        
         this.dataLayout =
                 (RelativeLayout) view.findViewById(
                         R.id.show_data_layout);
@@ -154,52 +148,6 @@ public class ShowShowFragment extends Fragment
                 (TextView) view.findViewById(
                         R.id.show_empty);
     }
-
-    /** Load data from model to fields view. */
-    public void loadData() {
-        if (this.model != null) {
-
-            this.dataLayout.setVisibility(View.VISIBLE);
-            this.emptyText.setVisibility(View.GONE);
-
-
-            if (this.model.getTitle() != null) {
-                this.titleView.setText(this.model.getTitle());
-            }
-            if (this.model.getPlot() != null) {
-                this.plotView.setText(this.model.getPlot());
-            }
-            if (this.model.getRuntime() != null) {
-                this.runtimeView.setText(this.model.getRuntime());
-            }
-            if (this.model.getReleased() != null) {
-                this.releasedView.setText(this.model.getReleased());
-            }
-            if (this.model.getActors() != null) {
-                this.actorsView.setText(this.model.getActors());
-            }
-            if (this.model.getWriters() != null) {
-                this.writersView.setText(this.model.getWriters());
-            }
-            if (this.model.getDirectors() != null) {
-                this.directorsView.setText(this.model.getDirectors());
-            }
-            if (this.model.getPoster() != null) {
-                this.posterView.setText(this.model.getPoster());
-            }
-            if (this.model.getGenres() != null) {
-                String genresValue = "";
-                for (Genre item : this.model.getGenres()) {
-                    genresValue += item.getId() + ",";
-                }
-                this.genresView.setText(genresValue);
-            }
-        } else {
-            this.dataLayout.setVisibility(View.GONE);
-            this.emptyText.setVisibility(View.VISIBLE);
-        }
-    }
-
     @Override
     public View onCreateView(
             LayoutInflater inflater,
@@ -219,13 +167,13 @@ public class ShowShowFragment extends Fragment
         setRetainInstance(true);
 
         Show show = (Show) getArguments().getSerializable("SHOW");
-        
+
         String url = "http://api.themoviedb.org/3/tv/"+ show.getId() +"?api_key=0d2d4cca633bc7bc04a564ac8266d3a1";
-        
+
         WebServices ws = new WebServices(this.getActivity());
         ws.parser = this;
         ws.execute(url);
-        
+
         return view;
     }
 
@@ -234,40 +182,40 @@ public class ShowShowFragment extends Fragment
         if (stream != null) {
             try {
                 JSONObject jsonObj = new JSONObject(stream);
-                 
+
                 // Getting JSON Array node
                 authors = jsonObj.getJSONArray(TAG_AUTHOR);
                 genres = jsonObj.getJSONArray(TAG_GENRES);
                 seasons = jsonObj.getJSONArray(TAG_SEASONS);
-                
+
                 for (int i = 0; i < authors.length(); i++) {
                     JSONObject a = authors.getJSONObject(i);
                     Author author = new Author( a.getInt(TAG_ID_AUTHOR), 
-                                                a.getString(TAG_NAME_AUTHOR), 
-                                                a.getString(TAG_PROFIL_AUTHOR));
-                    
+                            a.getString(TAG_NAME_AUTHOR), 
+                            a.getString(TAG_PROFIL_AUTHOR));
+
                     authorList.add(author);
                 }
-                
+
                 for (int i = 0; i < genres.length(); i++) {
                     JSONObject g = genres.getJSONObject(i);
                     Genre genre = new Genre(g.getInt(TAG_ID_GENRE),g.getString(TAG_NAME_GENRE));
-                    
+
                     genreList.add(genre);
                 }
 
                 for (int i = 0; i < seasons.length(); i++) {
                     JSONObject s = seasons.getJSONObject(i);
                     Season season = new Season( s.getInt(TAG_ID_SEASON),
-                                                s.getString(TAG_AIR_DATE_SEASON), 
-                                                s.getInt(TAG_NB_EPISODE_SEASON),
-                                                s.getString(TAG_POSTER_PATH_SEASON),
-                                                s.getInt(TAG_SEASON_NB),
-                                                s.getInt(TAG_ID));
-                    
+                            s.getString(TAG_AIR_DATE_SEASON), 
+                            s.getInt(TAG_NB_EPISODE_SEASON),
+                            s.getString(TAG_POSTER_PATH_SEASON),
+                            s.getInt(TAG_SEASON_NB),
+                            s.getInt(TAG_ID));
+
                     seasonList.add(season);
                 }
-                
+
                 show.setId(jsonObj.getInt(TAG_ID));
                 show.setTitle(jsonObj.getString(TAG_NAME));
                 show.setPlot(jsonObj.getString(TAG_PLOT));
@@ -281,30 +229,46 @@ public class ShowShowFragment extends Fragment
                 show.setGenres(genreList);
                 show.setAuthors(authorList);
                 show.setSeasons(seasonList);
-                
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             Log.e("ServiceHandler", "Couldn't get any data from the url");
         }
-        
+
         entityPopulate(show);
-        
+
     }
 
     @Override
     public void listPopulate(List<Show> liste) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void entityPopulate(Show entity) {
         // TODO Auto-generated method stub
+        this.titleView.setText(entity.getTitle());
+        this.plotView.setText(entity.getPlot());
+        this.runtimeView.setText(entity.getRuntime());
+        this.releasedView.setText(entity.getReleased());
+
+        String writersValue = "";
+        for (Author item : entity.getAuthors()) {
+            writersValue += item.getName() + " ";
+        }
+        this.writersView.setText(writersValue);
+
+        String genresValue = "";
+        for (Genre item : entity.getGenres()) {
+            genresValue += item.getTitle() + " ";
+        }
+        this.genresView.setText(genresValue);
         
+        DownloadImageTask dl = new DownloadImageTask(this.posterView);
+        dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster()); 
     }
-
-
 }
 
