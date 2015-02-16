@@ -6,7 +6,6 @@ import com.imie.sylf.view.tab.GenreFragment;
 import com.imie.sylf.view.tab.PreferenceFragment;
 import com.imie.sylf.view.tab.ProfilFragment;
 import com.imie.sylf.view.tab.RandomFragment;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.os.Bundle;
 import android.widget.ImageView;
