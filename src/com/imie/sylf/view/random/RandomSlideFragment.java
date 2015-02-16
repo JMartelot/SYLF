@@ -9,20 +9,25 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView.OnSliderClickListener;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.imie.sylf.R;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
+import com.imie.sylf.view.show.ShowShowFragment;
 
 /** Genre list fragment.
  *
@@ -41,6 +46,7 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null; 
     private SliderLayout mDemoSlider;
+    private Show show = null;
 
     @Override
     public View onCreateView(
@@ -111,6 +117,39 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
             demoSlider.description(show.getTitle())
             .image("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
             this.mDemoSlider.addSlider(demoSlider);
+            
+            demoSlider.setOnSliderClickListener(new OnSliderClickListener() {
+                
+                @Override
+                public void onSliderClick(BaseSliderView slider) {
+                    // TODO Auto-generated method stub
+                    Show show = RandomSlideFragment.this.show;
+                    // Create new fragment and transaction
+                    Fragment newFragment = new ShowShowFragment();
+                    RandomSlideFragment slide = 
+                            (RandomSlideFragment)getFragmentManager().findFragmentById(R.id.random_fragment_slide);
+
+                    Bundle b = new Bundle();
+                    b.putSerializable("SHOW", show);
+
+                    newFragment.setArguments(b);
+
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                    // Replace whatever is in the fragment_container view with this fragment,
+                    // and add the transaction to the back stack
+                    transaction.remove(slide);
+                    transaction.replace(R.id.random_fragment_latest, newFragment);
+                    transaction.addToBackStack(null);
+
+                    // Commit the transaction
+                    transaction.commit();
+                    
+                }
+            });
+            
+            
+            
             i++;
         }
     }
