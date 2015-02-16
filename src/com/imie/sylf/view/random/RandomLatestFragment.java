@@ -45,7 +45,6 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null;
     private LinearLayout inHorizontalScrollView = null;
-    private Show show = null;
 
     @Override
     public View onCreateView(
@@ -118,15 +117,15 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
             DownloadImageTask dl = new DownloadImageTask(inHorizontalScrollView, layoutParams, imageView);
             dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster());
 
-            this.show = show;
+            final Show item = show;
 
 
             imageView.setOnClickListener(new OnClickListener() {
-
+                
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
-                    Show show = RandomLatestFragment.this.show;
+                    Show show = item;
                     // Create new fragment and transaction
                     Fragment newFragment = new ShowShowFragment();
                     RandomSlideFragment slide = 
