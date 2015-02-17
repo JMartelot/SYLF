@@ -40,6 +40,7 @@
     <string name="pref_date_diffusion">Période de diffusion</string>
     <string name="pref_genre">Genre</string>
     <string name="pref_popularite">Popularité</string>
+    <string name="pref_note">Bien noté</string>
     <string name="pref_date_de">De</string>
     <string name="pref_date_a">a</string>
     <string name="pref_doesnt_matter">Peu importe</string>

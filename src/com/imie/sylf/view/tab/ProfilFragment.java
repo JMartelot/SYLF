@@ -54,12 +54,12 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
         
         setRetainInstance(true);
         
+        this.view = inflater.inflate(R.layout.fragment_profil, container, false);
+        
         WebServices ws = new WebServices(this.getActivity());
         ws.parser = this;
         ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
         
-        this.view = inflater.inflate(R.layout.fragment_profil, container, false);
-
         this.cb = (CheckBox) view.findViewById(R.id.doesnt_matter);
         this.rl_date = (RelativeLayout) this.view.findViewById(R.id.date);
         

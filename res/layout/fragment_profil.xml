@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:background="#F5F5F5" >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="match_parent"
@@ -15,7 +15,8 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/pref_title"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="#333" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,25 +148,27 @@
                 android:text="@string/pref_popularite"
                 android:textColor="#e74f3f"
                 android:textSize="20sp" />
-            
-            
-                <RelativeLayout
-                    android:layout_width="match_parent"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingLeft="8dp" >
+
+                <CheckBox android:id="@+id/cb_popularite"
+                    android:layout_width="350px"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="8dp" >
+                    android:text="@string/pref_popularite"/>
+
+                <CheckBox android:id="@+id/cb_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pref_note"
+                    android:layout_toRightOf="@id/cb_popularite"/>
                 
-                    <CheckBox 
-                    android:id="@+id/cb_popularite"/>
-                    <CheckedTextView
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-                    android:text="@string/pref_popularite"
-                    android:layout_toRightOf="@id/cb_popularite" />
-                </RelativeLayout>
-
+            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
