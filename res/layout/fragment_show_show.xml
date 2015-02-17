@@ -12,128 +12,97 @@
         <RelativeLayout
             android:id="@+id/show_data_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/show_backdrop_path"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
-                    android:id="@+id/layout_description"
+                android:id="@+id/layout_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/show_backdrop_path"
+                android:layout_margin="10dp"
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:id="@+id/android_image"
+                    android:id="@+id/show_poster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:cropToPadding="true"
-                    android:src="@drawable/ic_launcher" />
+                    android:cropToPadding="true" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingLeft="12dip" >
 
                     <TextView
                         android:id="@+id/show_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textIsSelectable="true" />
+                        android:textIsSelectable="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
 
                     <TextView
                         android:id="@+id/show_runtime_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/show_runtime_label" />
+                        android:text="@string/show_runtime_label"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/show_runtime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_runtime_label"
+                        android:paddingLeft="10dip"
                         android:textIsSelectable="true" />
 
                     <TextView
                         android:id="@+id/show_released_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_runtime"
-                        android:text="@string/show_released_label" />
+                        android:text="@string/show_released_label"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/show_released"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_released_label"
-                        android:textIsSelectable="true" />
-
-                    <TextView
-                        android:id="@+id/show_actors_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_released"
-                        android:text="@string/show_actors_label" />
-
-                    <TextView
-                        android:id="@+id/show_actors"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_actors_label"
+                        android:paddingLeft="10dip"
                         android:textIsSelectable="true" />
 
                     <TextView
                         android:id="@+id/show_writers_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_actors"
-                        android:text="@string/show_writers_label" />
+                        android:text="@string/show_writers_label"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/show_writers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_writers_label"
-                        android:textIsSelectable="true" />
-
-                    <TextView
-                        android:id="@+id/show_directors_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_writers"
-                        android:text="@string/show_directors_label" />
-
-                    <TextView
-                        android:id="@+id/show_directors"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_directors_label"
-                        android:textIsSelectable="true" />
-
-                    <TextView
-                        android:id="@+id/show_poster_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_directors"
-                        android:text="@string/show_poster_label" />
-
-                    <TextView
-                        android:id="@+id/show_poster"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_poster_label"
+                        android:paddingLeft="10dip"
                         android:textIsSelectable="true" />
 
                     <TextView
                         android:id="@+id/show_genres_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_poster"
-                        android:text="@string/show_genres_label" />
+                        android:text="@string/show_genres_label"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/show_genres"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/show_genres_label"
+                        android:paddingLeft="10dip"
                         android:textIsSelectable="true" />
                 </LinearLayout>
             </LinearLayout>
@@ -142,15 +111,17 @@
                 android:id="@+id/layout_synopsis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/layout_description">
+                android:layout_below="@+id/layout_description"
+                android:layout_margin="10dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/show_plot_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/show_title"
-                    android:text="@string/show_plot_label" />
+                    android:text="@string/show_plot_label"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/show_plot"
@@ -159,26 +130,6 @@
                     android:layout_below="@+id/show_plot_label"
                     android:textIsSelectable="true" />
             </LinearLayout>
-            
-                 <LinearLayout
-                android:id="@+id/layout_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/layout_synopsis">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Notre avis" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textIsSelectable="true"
-                    android:text="Critique numéro 1 2 3" />
-            </LinearLayout>
-            
         </RelativeLayout>
     </ScrollView>
 

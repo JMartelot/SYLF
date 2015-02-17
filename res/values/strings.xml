@@ -28,6 +28,7 @@
     <string name="show_released_label">Released</string>
     <string name="show_runtime_invalid_field_error">Field Runtime is invalid.</string>
     <string name="show_runtime_label">Runtime</string>
+    <string name="show_seasons_label">Seasons</string>
     <string name="show_title_invalid_field_error">Field Title is invalid.</string>
     <string name="show_title_label">Title</string>
     <string name="show_writers_invalid_field_error">Field Writers is invalid.</string>
@@ -43,5 +44,6 @@
     <string name="pref_date_a">a</string>
     <string name="pref_doesnt_matter">Peu importe</string>
     <string name="pref_title">Renseigner vos préférences</string>
+    <string name="top_rated">Top Rated</string>
 
 </resources>

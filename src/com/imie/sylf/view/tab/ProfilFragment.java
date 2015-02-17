@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProfilFragment extends Fragment implements Parser<Genre>  {
@@ -60,7 +62,7 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
 
         this.cb = (CheckBox) view.findViewById(R.id.doesnt_matter);
         this.rl_date = (RelativeLayout) this.view.findViewById(R.id.date);
-
+        
         if (!cb.isChecked()) {
             displayDate();
             rl_date.setVisibility(View.VISIBLE);

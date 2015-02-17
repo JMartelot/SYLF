@@ -13,6 +13,7 @@ import com.imie.sylf.view.tab.ProfilFragment;
 import com.imie.sylf.view.tab.RandomFragment;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 public class HomeActivity extends TabSwipeActivity{
     
