@@ -51,7 +51,6 @@ Thumbs.db
 /doc/internal/*
 /doc/stats/*
 /doc/API/*
-/libs/android-support-v4.jar
 .settings/*
 /lint.xml
 */bin/*
@@ -62,11 +61,6 @@ Thumbs.db
 local.properties
 .svn
 project.properties
-
-#  Libs
-#############
-#/libs/ActionBarSherlock/*
-#/libs/AndroidImageSlider/bin/*
 
 # Sources and Javadoc Libs
 ##########################
