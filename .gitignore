@@ -61,13 +61,10 @@ local.properties
 .svn
 project.properties
 
-# Libs Sherlock #
-#################
-/libs/sherlock/*
-
 #  Libs
 #############
-/libs/AndroidImageSlider/*
+#/libs/ActionBarSherlock/*
+#/libs/AndroidImageSlider/bin/*
 
 # Sources and Javadoc Libs
 ##########################
