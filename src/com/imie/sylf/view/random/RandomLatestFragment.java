@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -22,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
+import com.imie.sylf.ShowActivity;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
@@ -45,6 +47,7 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null;
     private LinearLayout inHorizontalScrollView = null;
+    private static final String EXTRA_SHOW = "show";
 
     @Override
     public View onCreateView(
@@ -126,26 +129,9 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     Show show = item;
-                    // Create new fragment and transaction
-                    Fragment newFragment = new ShowShowFragment();
-                    RandomSlideFragment slide = 
-                            (RandomSlideFragment)getFragmentManager().findFragmentById(R.id.random_fragment_slide);
-
-                    Bundle b = new Bundle();
-                    b.putSerializable("SHOW", show);
-
-                    newFragment.setArguments(b);
-
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                    // Replace whatever is in the fragment_container view with this fragment,
-                    // and add the transaction to the back stack
-                    transaction.remove(slide);
-                    transaction.replace(R.id.random_fragment_latest, newFragment);
-                    transaction.addToBackStack(null);
-
-                    // Commit the transaction
-                    transaction.commit();
+                    Intent intent = new Intent(RandomLatestFragment.this.getActivity(), ShowActivity.class);
+                    intent.putExtra(EXTRA_SHOW, show);
+                    startActivity(intent);
                 }
             });   
 

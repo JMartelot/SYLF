@@ -17,9 +17,6 @@ public class LandingActivity extends TabSwipeActivity {
 
         setContentView(R.layout.activity_landing);
 
-        getSupportActionBar().hide();
-        
-        
+        getSupportActionBar().hide();  
     }
-    
 }
