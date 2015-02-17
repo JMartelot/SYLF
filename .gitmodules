@@ -1,0 +1,9 @@
+[submodule "libs\\ActionBarSherlock"]
+	path = libs\\ActionBarSherlock
+	url = git@github.com:JakeWharton/ActionBarSherlock.git
+[submodule "libs\\AndroidImageSlider"]
+	path = libs\\AndroidImageSlider
+	url = git@github.com:daimajia/AndroidImageSlider.git
+[submodule "libs\\Paralloid"]
+	path = libs\\Paralloid
+	url = git@github.com:chrisjenx/Paralloid.git
