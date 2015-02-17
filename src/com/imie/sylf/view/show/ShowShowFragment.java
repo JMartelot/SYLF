@@ -63,6 +63,8 @@ implements Parser<Show>{
     protected TextView directorsView;
     /** poster View. */
     protected ImageView posterView;
+    /** backdrop View. */
+    protected ImageView backdropView;
     /** genres View. */
     protected TextView genresView;
     /** Data layout. */
@@ -135,15 +137,15 @@ implements Parser<Show>{
         this.posterView =
                 (ImageView) view.findViewById(
                         R.id.show_poster);
-
+        this.backdropView =
+                (ImageView) view.findViewById(
+                        R.id.show_backdrop_path);
         this.genresView =
                 (TextView) view.findViewById(
                         R.id.show_genres);
-        
         this.dataLayout =
                 (RelativeLayout) view.findViewById(
                         R.id.show_data_layout);
-
         this.emptyText =
                 (TextView) view.findViewById(
                         R.id.show_empty);
@@ -268,7 +270,11 @@ implements Parser<Show>{
         this.genresView.setText(genresValue);
         
         DownloadImageTask dl = new DownloadImageTask(this.posterView);
-        dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster()); 
+        dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster());
+        
+
+        DownloadImageTask dl2 = new DownloadImageTask(this.backdropView);
+        dl2.execute("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
     }
 }
 
