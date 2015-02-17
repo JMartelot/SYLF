@@ -54,6 +54,8 @@ Thumbs.db
 /libs/android-support-v4.jar
 .settings/*
 /lint.xml
+*/bin/*
+*/gen/*
 
 .classpath
 .project
