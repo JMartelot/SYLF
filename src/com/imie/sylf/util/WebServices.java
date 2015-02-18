@@ -57,7 +57,8 @@ public class WebServices extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... urls) {
         StringBuilder sb = new StringBuilder();
         HttpURLConnection urlConnection = null;
-        try {
+        
+    	try {
             URL url = new URL(urls[0]);
 
             // Open connection
@@ -82,8 +83,6 @@ public class WebServices extends AsyncTask<String,Void,String> {
                     // Append Server Response To Content String 
                     Log.d("string web service", sb.toString());
                 }
-            }else{
-                
             }
 
         } catch (IOException e) {
@@ -94,6 +93,7 @@ public class WebServices extends AsyncTask<String,Void,String> {
                 urlConnection.disconnect();
             }
         }
+        
         return sb.toString();
     }
 
