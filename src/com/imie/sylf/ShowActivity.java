@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.ActionBarSherlock;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.imie.sylf.entity.Author;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.entity.Season;
@@ -29,7 +30,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ShowActivity extends Activity implements Parser<Show>{
+public class ShowActivity extends SherlockActivity implements Parser<Show>{
     /** Model data. */
     protected Show model;
 
@@ -143,7 +144,6 @@ public class ShowActivity extends Activity implements Parser<Show>{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);     
 
-                
         setContentView(R.layout.fragment_show_show);
         
         this.initializeComponent(this); 

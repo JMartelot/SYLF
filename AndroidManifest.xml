@@ -53,6 +53,11 @@
             <intent-filter>
             </intent-filter>
         </activity>
+        <activity 
+            android:name=".ProfilActivity" >
+            <intent-filter>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

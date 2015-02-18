@@ -54,7 +54,7 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
         
         setRetainInstance(true);
         
-        this.view = inflater.inflate(R.layout.fragment_profil, container, false);
+        this.view = inflater.inflate(R.layout.activity_profil, container, false);
         
         WebServices ws = new WebServices(this.getActivity());
         ws.parser = this;
