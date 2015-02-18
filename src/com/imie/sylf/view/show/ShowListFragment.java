@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -31,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
+import com.imie.sylf.ShowActivity;
 import com.imie.sylf.adapter.show.ShowAdapter;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.entity.Show;
@@ -55,6 +57,7 @@ public class ShowListFragment extends Fragment
     private static final String TAG_POPULARITY = "popularity";
     private static final String TAG_NOTE = "vote_average";
     private static final String TAG_VOTE = "vote_count";
+    private static final String EXTRA_SHOW = "show";
     
     private List<Show> showList = new ArrayList<Show>();
     private JSONArray shows = null;
@@ -99,23 +102,12 @@ public class ShowListFragment extends Fragment
                 
                 Show show = (Show) ShowListFragment.this.lv.getItemAtPosition(position);
                 
-                // Create new fragment and transaction
-                Fragment newFragment = new ShowShowFragment();
+                              
                 
-                Bundle b = new Bundle();
-                b.putSerializable("SHOW", show);
-                
-                newFragment.setArguments(b);
-                
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.genre_fragment_list, newFragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
+              Intent intent = new Intent(ShowListFragment.this.getActivity(), ShowActivity.class);
+              intent.putExtra(EXTRA_SHOW, show);
+              startActivity(intent);
+              
             }
             
         });

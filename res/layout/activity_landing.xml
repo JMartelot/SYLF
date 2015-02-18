@@ -6,7 +6,5 @@
     android:orientation="vertical"
     android:background="@drawable/sylf"
     tools:context="com.imie.sylf.HomeActivity" >
-    
-    
 
 </LinearLayout>

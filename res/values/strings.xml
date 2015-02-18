@@ -37,6 +37,14 @@
     <string name="pref">Preferences</string>
     <string name="category">Category</string>
     <string name="profil">Profil</string>
+    <string name="pref_date_diffusion">Période de diffusion</string>
+    <string name="pref_genre">Genre</string>
+    <string name="pref_popularite">Popularité</string>
+    <string name="pref_note">Bien noté</string>
+    <string name="pref_date_de">De</string>
+    <string name="pref_date_a">a</string>
+    <string name="pref_doesnt_matter">Peu importe</string>
+    <string name="pref_title">Renseigner vos préférences</string>
     <string name="top_rated">Top Rated</string>
 
 </resources>

@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView.OnSliderClickListener;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.imie.sylf.R;
+import com.imie.sylf.ShowActivity;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
@@ -46,6 +48,7 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null; 
     private SliderLayout mDemoSlider;
+    private static final String EXTRA_SHOW = "show";
 
     @Override
     public View onCreateView(
@@ -57,7 +60,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
 
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
-
 
         this.mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);
 
@@ -125,26 +127,10 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
                 public void onSliderClick(BaseSliderView slider) {
                     // TODO Auto-generated method stub
                     Show show = item;
-                    // Create new fragment and transaction
-                    Fragment newFragment = new ShowShowFragment();
-                    RandomSlideFragment slide = 
-                            (RandomSlideFragment)getFragmentManager().findFragmentById(R.id.random_fragment_slide);
-
-                    Bundle b = new Bundle();
-                    b.putSerializable("SHOW", show);
-
-                    newFragment.setArguments(b);
-
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                    // Replace whatever is in the fragment_container view with this fragment,
-                    // and add the transaction to the back stack
-                    transaction.remove(slide);
-                    transaction.replace(R.id.random_fragment_latest, newFragment);
-                    transaction.addToBackStack(null);
-
-                    // Commit the transaction
-                    transaction.commit();
+                    
+                    Intent intent = new Intent(RandomSlideFragment.this.getActivity(), ShowActivity.class);
+                    intent.putExtra(EXTRA_SHOW, show);
+                    startActivity(intent);
                     
                 }
             });
