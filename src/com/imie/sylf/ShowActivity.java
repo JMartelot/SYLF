@@ -15,6 +15,7 @@ import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.util.WebServices;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 
 import android.app.Activity;
@@ -249,13 +250,12 @@ public class ShowActivity extends Activity implements Parser<Show>{
             genresValue += item.getTitle() + " ";
         }
         this.genresView.setText(genresValue);
-        
-        DownloadImageTask dl = new DownloadImageTask(this.posterView);
-        dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster());
-        
 
-        DownloadImageTask dl2 = new DownloadImageTask(this.backdropView);
-        dl2.execute("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
+        ImageLoader.getInstance().displayImage("https://image.tmdb.org/t/p/w342"+show.getPoster()
+                , this.posterView); 
+
+        ImageLoader.getInstance().displayImage("https://image.tmdb.org/t/p/w780"+show.getBackdrop_path()
+                , this.backdropView);
     }
     
 }

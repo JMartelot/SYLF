@@ -118,7 +118,7 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
             
             TextSliderView demoSlider = new TextSliderView(this.getActivity());
             demoSlider.description(show.getTitle())
-            .image("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
+            .image("https://image.tmdb.org/t/p/w780"+show.getBackdrop_path());
             this.mDemoSlider.addSlider(demoSlider);
             
             demoSlider.setOnSliderClickListener(new OnSliderClickListener() {

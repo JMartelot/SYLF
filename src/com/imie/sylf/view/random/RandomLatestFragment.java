@@ -30,6 +30,7 @@ import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 import com.imie.sylf.view.show.ShowListFragment;
 import com.imie.sylf.view.show.ShowShowFragment;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /** Genre list fragment.
  *
@@ -65,8 +66,6 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
         WebServices ws = new WebServices(this.getActivity());
         ws.parser = this;
         ws.execute("http://api.themoviedb.org/3/tv/top_rated?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
-
-
 
         return this.view;
     }
@@ -117,11 +116,13 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
             //Set margin of image's container
             layoutParams.setMargins(10, 0, 10, 0);
 
-            DownloadImageTask dl = new DownloadImageTask(inHorizontalScrollView, layoutParams, imageView);
-            dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster());
+            ImageLoader.getInstance().displayImage("https://image.tmdb.org/t/p/w342"+show.getPoster()
+                    , imageView); 
+            
+            imageView.setLayoutParams(layoutParams);
+            this.inHorizontalScrollView.addView(imageView);
 
             final Show item = show;
-
 
             imageView.setOnClickListener(new OnClickListener() {
                 
