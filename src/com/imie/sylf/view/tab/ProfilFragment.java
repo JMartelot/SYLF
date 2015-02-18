@@ -146,7 +146,7 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
     public void listPopulate(List<Genre> liste) {
         int i =0;
 
-        LinearLayout container = (LinearLayout) this.view.findViewById(R.id.genre);
+        LinearLayout container = (LinearLayout) this.view.findViewById(R.id.pref_genre);
         
         for (Genre genre : liste) {
             CheckBox cb = new CheckBox(this.getActivity());

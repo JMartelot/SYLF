@@ -27,16 +27,23 @@ public class WebServices extends AsyncTask<String,Void,String> {
     public Parser parser = null;
     Activity context;
     LinearLayout progressBar = null;
-    RelativeLayout container = null;
+    LinearLayout linearContainer = null;
+    RelativeLayout relativeContainer = null;
     
     public WebServices(Activity context) {
         this.context = context;
     }
     
+    public WebServices(Activity context, LinearLayout progressBar, LinearLayout container) {
+        this.context = context;
+        this.progressBar = progressBar;
+        this.linearContainer = container;
+    }
+    
     public WebServices(Activity context, LinearLayout progressBar, RelativeLayout container) {
         this.context = context;
         this.progressBar = progressBar;
-        this.container = container;
+        this.relativeContainer = container;
     }
     
     /* (non-Javadoc)
@@ -47,9 +54,15 @@ public class WebServices extends AsyncTask<String,Void,String> {
         super.onPreExecute();
         
         // Display the progressBar
-        if(progressBar != null && container != null){
+        if(progressBar != null && linearContainer != null){
         	progressBar.setVisibility(View.VISIBLE);
-        	container.setVisibility(View.GONE);
+        	linearContainer.setVisibility(View.GONE);
+        }
+
+        // Display the progressBar
+        if(progressBar != null && relativeContainer != null){
+            progressBar.setVisibility(View.VISIBLE);
+            relativeContainer.setVisibility(View.GONE);
         }
     }
     
@@ -106,9 +119,14 @@ public class WebServices extends AsyncTask<String,Void,String> {
 
 
         // Hide the progressBar
-        if(progressBar != null && container != null){
+        if(progressBar != null && relativeContainer != null){
         	progressBar.setVisibility(View.GONE);
-        	container.setVisibility(View.VISIBLE);
+        	relativeContainer.setVisibility(View.VISIBLE);
+        }
+
+        if(progressBar != null && linearContainer != null){
+            progressBar.setVisibility(View.GONE);
+            linearContainer.setVisibility(View.VISIBLE);
         }
         
         this.context.runOnUiThread(new Runnable() {

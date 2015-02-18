@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,12 +41,13 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
     private JSONArray genres;
     private LinearLayout row;
     private List<CheckBox> cbGenres = new ArrayList<CheckBox>();
+    private ArrayAdapter<String> adapter;
     
     private CheckBox doesntmatter;
     private Spinner startDate;
     private Spinner endDate;
-    private CheckBox popularity;
-    private CheckBox note;
+    private RadioButton popularity;
+    private RadioButton note;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
-        WebServices ws = new WebServices(this);
+        LinearLayout genreContainer = (LinearLayout) findViewById(R.id.pref_genre);
+        LinearLayout progress = (LinearLayout) findViewById(R.id.pref_genreProgressLayout);
+        
+        WebServices ws = new WebServices(this, progress, genreContainer);
         ws.parser = this;
         ws.execute("http://api.themoviedb.org/3/genre/tv/list?api_key=0d2d4cca633bc7bc04a564ac8266d3a1");
             
@@ -92,19 +97,21 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         this.doesntmatter = (CheckBox) findViewById(R.id.doesnt_matter);
         this.startDate = (Spinner) findViewById(R.id.start_date);
         this.endDate = (Spinner) findViewById(R.id.end_date);
-        this.popularity = (CheckBox) findViewById(R.id.cb_popularite);
-        this.note = (CheckBox) findViewById(R.id.cb_note);
+        this.popularity = (RadioButton) findViewById(R.id.radio_popularite);
+        this.note = (RadioButton) findViewById(R.id.radio_note);
+        
+        loadData();
     }
     
     private void loadGenres(){
         SharedPreferences preferences = getSharedPreferences("Pref", MODE_PRIVATE);
         
-        String genre = preferences.getString("GENRES", "RIEN");
+        String genre = preferences.getString("GENRES", "NOTHING");
         
         genre.trim();
         String[] genres = genre.split(" ");
         
-        if (this.cbGenres.size() != 0) {
+        if (this.cbGenres.size() != 0 && genre != "NOTHING") {
             for (CheckBox cb : cbGenres) {
                 for (int i = 0; i < genres.length; i++) {
                     if(cb.getId() == Integer.parseInt(genres[i])){
@@ -113,6 +120,32 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
                 }
             }
         }
+    }
+    
+    private void loadData(){
+        SharedPreferences preferences = getSharedPreferences("Pref", MODE_PRIVATE);
+        
+        String date = preferences.getString("DATES", "all");
+        String popularity = preferences.getString("POPULARITY", "popularity");
+        
+        if( date.equals("all")){
+            this.doesntmatter.setChecked(true);
+        }else{
+            String[] dates = date.split("-");
+            
+            int posStart = this.adapter.getPosition(dates[0]);
+            int posEnd = this.adapter.getPosition(dates[1]);
+            
+            this.startDate.setSelection(posStart);
+            this.endDate.setSelection(posEnd);
+        }
+        
+        if(popularity.equals("popularity")){
+            this.popularity.setChecked(true);
+        }else{
+            this.note.setChecked(true);
+        }
+        
     }
 
     
@@ -129,7 +162,7 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         Spinner spinner2 = (Spinner) findViewById(R.id.end_date);
 
         //Create an adapter for dropdown list with the list of years
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        this.adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, this.years);
 
         //Populate dropdown list with the adapter
@@ -139,6 +172,19 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
     }
     
     
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+        
+        switch(view.getId()) {
+            case R.id.radio_note:
+                if (checked)
+                break;
+            case R.id.radio_popularite:
+                if (checked)
+                break;
+        }
+    }
 
     @Override
     protected void onStop() {
@@ -147,7 +193,8 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
 
         Editor editor = preferences.edit();
         String genres = "";
-        String dates = "All";
+        String dates = "all";
+        String popularity = "popularity";
         
         if (this.cbGenres.size() != 0) {
             for (CheckBox cb : cbGenres) {
@@ -157,12 +204,19 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
             }
         }
         
+        if(this.popularity.isChecked()){
+            popularity = "popularity";
+        }else{
+            popularity = "note";
+        }
+        
         if(!this.doesntmatter.isChecked()){
-            dates = this.startDate + "-" + this.endDate;
+            dates = this.startDate.getSelectedItem().toString() + "-" + this.endDate.getSelectedItem().toString();
         }
         
         editor.putString("GENRES", genres);
         editor.putString("DATES", dates);
+        editor.putString("POPULARITY", popularity);
         editor.commit();
         
         super.onStop();
@@ -206,7 +260,7 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
     public void listPopulate(List<Genre> liste) {
         int i =0;
 
-        LinearLayout container = (LinearLayout) findViewById(R.id.genre);
+        LinearLayout container = (LinearLayout) findViewById(R.id.pref_genre);
         
         for (Genre genre : liste) {
             CheckBox cb = new CheckBox(this);
@@ -233,4 +287,6 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         // TODO Auto-generated method stub
         
     }
+    
+     
 }

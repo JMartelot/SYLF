@@ -143,7 +143,7 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
     }
     
     @Override
-    public void listPopulate(List liste) {
+    public void listPopulate(List<Genre> liste) {
         
         this.adapter = new GenreAdapter(this.getActivity(), liste);
         

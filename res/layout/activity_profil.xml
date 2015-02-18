@@ -15,8 +15,8 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/pref_title"
-            android:textSize="25sp"
-            android:textColor="#333" />
+            android:textColor="#333"
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,17 +111,32 @@
                 android:textColor="#e74f3f"
                 android:textSize="20sp" />
 
+            <LinearLayout
+                android:id="@+id/pref_genreProgressLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:id="@+id/genre"
+                    android:id="@+id/pref_genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
-                    android:paddingLeft="8dp" >
+                    android:paddingLeft="8dp"
+                    android:visibility="gone" >
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
@@ -149,25 +164,27 @@
                 android:textColor="#e74f3f"
                 android:textSize="20sp" />
 
-            <RelativeLayout
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:paddingLeft="8dp" >
 
-                <CheckBox android:id="@+id/cb_popularite"
+                <RadioButton
+                    android:id="@+id/radio_popularite"
                     android:layout_width="350px"
                     android:layout_height="wrap_content"
-                    android:text="@string/pref_popularite"/>
+                    android:checked="true"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/pref_popularite" />
 
-                <CheckBox android:id="@+id/cb_note"
+                <RadioButton
+                    android:id="@+id/radio_note"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pref_note"
-                    android:layout_toRightOf="@id/cb_popularite"/>
-                
-            </RelativeLayout>
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/pref_note" />
+            </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
