@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <item name="dark" type="color">#000</item>
+
+    <item name="dark" type="color">#000</item>
+
+    <color name="shadow">#555555</color>
+    <color name="title">#777777</color>
+
 </resources>

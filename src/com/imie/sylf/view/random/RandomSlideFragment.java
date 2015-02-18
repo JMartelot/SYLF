@@ -29,7 +29,6 @@ import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
-import com.imie.sylf.view.show.ShowShowFragment;
 
 /** Genre list fragment.
  *
