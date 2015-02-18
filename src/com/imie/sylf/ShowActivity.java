@@ -93,7 +93,7 @@ public class ShowActivity extends Activity implements Parser<Show>
 	private static final String TAG_ID_AUTHOR = "id";
 	private static final String TAG_NAME_AUTHOR = "name";
 	private static final String TAG_PROFIL_AUTHOR = "profile_path";
-	
+
 	private static final String TAG_RESULT = "results";
 	private static final String TAG_KEY = "key";
 
@@ -161,7 +161,7 @@ public class ShowActivity extends Activity implements Parser<Show>
 
 		Intent i = getIntent();
 		Show show = (Show) i.getSerializableExtra(EXTRA_SHOW);
-		
+
 		String url = "http://api.themoviedb.org/3/tv/"+ show.getId() +"?api_key=0d2d4cca633bc7bc04a564ac8266d3a1";
 
 		WebServices ws = new WebServices(this);
@@ -177,7 +177,7 @@ public class ShowActivity extends Activity implements Parser<Show>
 		if (stream != null) {
 			try {
 				JSONObject jsonObj = new JSONObject(stream);
-				
+
 
 				// Getting JSON Array node
 				authors = jsonObj.getJSONArray(TAG_AUTHOR);
@@ -269,25 +269,23 @@ public class ShowActivity extends Activity implements Parser<Show>
 
 		DownloadImageTask dl2 = new DownloadImageTask(this.backdropView);
 		dl2.execute("https://image.tmdb.org/t/p/w342"+show.getBackdrop_path());
-		
-		
+
+
 		final Show item = entity;
-		
+
 		ImageView imageView =  (ImageView) findViewById(R.id.show_backdrop_path);
-        imageView.setOnClickListener(new OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(ShowActivity.this, VideoActivity.class);
-                
-                intent.putExtra(EXTRA_VIDEO, item);
-                startActivity(intent);
-            }
-        });   
+		imageView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(ShowActivity.this, VideoActivity.class);
+
+				intent.putExtra(EXTRA_VIDEO, item);
+				startActivity(intent);
+			}
+		}); 
 	}
-
-
 }
 
 

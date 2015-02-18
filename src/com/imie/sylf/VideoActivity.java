@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,8 @@ YouTubePlayer.OnInitializedListener, Parser<Show> {
 
 	private static final int RECOVERY_DIALOG_REQUEST = 1;
 	private static final String EXTRA_VIDEO = "video";
+	private static final String EXTRA_RESULTS = "results";
+	private static final String EXTRA_KEY = "key";
 	private JSONArray video = null;
 	private Show show = new Show();
 
@@ -100,17 +103,29 @@ YouTubePlayer.OnInitializedListener, Parser<Show> {
 			try {
 				JSONObject jsonObj = new JSONObject(stream);
 
-				video = jsonObj.getJSONArray("results");	
+				video = jsonObj.getJSONArray(EXTRA_RESULTS);	
 				JSONObject v = video.getJSONObject(0);
 
-				show.setVideo(v.getString("key"));
+				show.setVideo(v.getString(EXTRA_KEY));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		} else {
 			Log.e("ServiceHandler", "Couldn't get any data from the url");
 		}
-		bindVideo();
+		
+		if(show.getVideo() != null){
+			bindVideo();
+		} else{
+			Context context = getApplicationContext();
+			CharSequence text = "No Trailer for this one! Sorry^^";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			
+			super.onBackPressed();
+		}	
 	}
 
 	@Override
