@@ -1,6 +1,8 @@
 package com.imie.sylf;
 
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.view.tab.GenreFragment;
 import com.imie.sylf.view.tab.PreferenceFragment;
@@ -43,4 +45,14 @@ public class HomeActivity extends TabSwipeActivity {
         .build();
         ImageLoader.getInstance().init(config);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.split_action_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    
 }

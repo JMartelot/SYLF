@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.ActionBarSherlock;
 import com.imie.sylf.entity.Author;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.entity.Season;
@@ -18,6 +19,7 @@ import com.imie.sylf.util.WebServices;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -149,6 +151,8 @@ public class ShowActivity extends Activity implements Parser<Show>{
         Intent i = getIntent();
         Show show = (Show) i.getSerializableExtra(EXTRA_SHOW);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         String url = "http://api.themoviedb.org/3/tv/"+ show.getId() +"?api_key=0d2d4cca633bc7bc04a564ac8266d3a1";
         
