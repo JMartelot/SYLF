@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.imie.sylf.R;
 import com.imie.sylf.entity.Show;
+import com.imie.sylf.util.DownloadImageTask;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ShowAdapter extends ArrayAdapter<Show> {
@@ -40,6 +42,13 @@ public class ShowAdapter extends ArrayAdapter<Show> {
         // Populate the data into the template view using the data object
         tvTitle.setText(show.getTitle());
         // Return the completed view to render on screen
+        
+
+        ImageView poster = (ImageView) convertView.findViewById(R.id.row_show_poster);
+        
+        DownloadImageTask dl = new DownloadImageTask(poster);
+        dl.execute("https://image.tmdb.org/t/p/w342"+show.getPoster());
+        
         return convertView;
     }
 }
