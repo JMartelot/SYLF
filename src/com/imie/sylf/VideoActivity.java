@@ -119,7 +119,7 @@ YouTubePlayer.OnInitializedListener, Parser<Show> {
 		} else{
 			Context context = getApplicationContext();
 			CharSequence text = "No Trailer for this one! Sorry^^";
-			int duration = Toast.LENGTH_SHORT;
+			int duration = Toast.LENGTH_LONG;
 
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
