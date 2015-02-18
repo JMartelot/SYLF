@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.imie.sylf.R;
 
 
@@ -20,9 +18,7 @@ public class PreferenceFragment extends Fragment {
             Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-
         View view = inflater.inflate(R.layout.fragment_preferences, container, false);
-       
         
         return view;
     }

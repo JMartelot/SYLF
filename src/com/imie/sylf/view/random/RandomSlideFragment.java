@@ -61,7 +61,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         //Permet de conserver le fragment lors d'une rotation
         setRetainInstance(true);
 
-
         this.mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);
 
         WebServices ws = new WebServices(this.getActivity());

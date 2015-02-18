@@ -14,10 +14,10 @@
         <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Sylf.Widget</item>
     </style>
-
+<!-- @drawable/ab_stacked_solid_sylf -->
     <style name="ActionBar.Solid.Sylf" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_sylf</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_sylf</item>
+        <item name="android:backgroundStacked">@color/dark</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_sylf</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Sylf</item>
     </style>
@@ -58,5 +58,5 @@
         <item name="android:popupMenuStyle">@style/PopupMenu.Sylf</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Sylf</item>
     </style>
-
+    
 </resources>
