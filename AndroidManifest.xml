@@ -19,6 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Sylf" >
         <activity
+             android:screenOrientation="portrait"
             android:name=".HomeActivity"
             android:label="@string/app_name"
             android:uiOptions="splitActionBarWhenNarrow" >
@@ -33,30 +34,32 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".LandingActivity"
             android:label="@string/app_name"
             android:uiOptions="splitActionBarWhenNarrow" >
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
-
-            <intent-filter>
-            </intent-filter>
         </activity>
         <activity 
             android:name=".ShowActivity"
+            android:screenOrientation="portrait"
             android:uiOptions="splitActionBarWhenNarrow" >
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
-
-            <intent-filter>
-            </intent-filter>
         </activity>
         <activity 
-            android:name=".ProfilActivity" >
-            <intent-filter>
-            </intent-filter>
+            android:name=".ProfilActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+            android:screenOrientation="landscape"
+             android:name=".VideoActivity" >
         </activity>
     </application>
 

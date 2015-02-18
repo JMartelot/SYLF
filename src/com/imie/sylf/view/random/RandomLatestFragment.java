@@ -29,7 +29,6 @@ import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 import com.imie.sylf.view.show.ShowListFragment;
-import com.imie.sylf.view.show.ShowShowFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /** Genre list fragment.
