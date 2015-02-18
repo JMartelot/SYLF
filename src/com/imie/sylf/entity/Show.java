@@ -28,6 +28,8 @@ public class Show implements Serializable {
     
     private String backdrop_path;
     
+    private String video;
+    
     private boolean in_production;
     
     private double vote_average;
@@ -246,8 +248,16 @@ public class Show implements Serializable {
     public void setSeasons(ArrayList<Season> seasons) {
         this.seasons = seasons;
     }
+    
+    public String getVideo() {
+		return video;
+	}
 
-    public Show(int id, String title, String plot, String runtime,
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public Show(int id, String title, String plot, String runtime,
             String released, String poster, String backdrop_path, boolean in_production,
             double vote_average, int vote_count, ArrayList<Genre> genres,
             ArrayList<Author> authors, ArrayList<Season> seasons) {
