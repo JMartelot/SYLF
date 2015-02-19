@@ -1,9 +1,13 @@
 package com.imie.sylf;
 
 
+import java.util.ArrayList;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.imie.sylf.data.Show.ShowSQLiteAdapter;
+import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.view.tab.GenreFragment;
 import com.imie.sylf.view.tab.PreferenceFragment;
@@ -23,18 +27,25 @@ public class HomeActivity extends TabSwipeActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        
+
         initUIL();
 
         addTab( R.drawable.random, RandomFragment.class, null );
         addTab( R.drawable.favorite, PreferenceFragment.class,null );
         addTab( R.drawable.genre, GenreFragment.class, null ); 
 
+        ShowSQLiteAdapter showAdapter = new ShowSQLiteAdapter(this);        
+
+        showAdapter.open();     
+        //Valeurs à afficher dans la liste
+        ArrayList<Show> shows = showAdapter.getShows();
+        showAdapter.close();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.split_action_bar, menu);
         return super.onCreateOptionsMenu(menu);
@@ -61,12 +72,12 @@ public class HomeActivity extends TabSwipeActivity {
         .build();
         ImageLoader.getInstance().init(config);
     }
-    
+
     private void openProfil(){
 
         Intent intent = new Intent(this, ProfilActivity.class);
         startActivity(intent);
     }
-    
-    
+
+
 }

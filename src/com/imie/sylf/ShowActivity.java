@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.imie.sylf.data.Show.ShowSQLiteAdapter;
+import com.imie.sylf.data.Show.ShowTask;
 import com.imie.sylf.entity.Author;
 import com.imie.sylf.entity.Genre;
 import com.imie.sylf.entity.Season;
@@ -20,6 +22,7 @@ import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.util.WebServices;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.imie.sylf.view.random.RandomLatestFragment;
+import com.imie.sylf.view.show.ShowListFragment;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -31,10 +34,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class ShowActivity extends SherlockActivity implements Parser<Show>
 {
@@ -160,15 +165,40 @@ public class ShowActivity extends SherlockActivity implements Parser<Show>
 		setContentView(R.layout.activity_show_show);
 
 		this.initializeComponent(this); 
+		
+		ImageView fav = (ImageView) findViewById(R.id.show_favorite);
 
+        ShowSQLiteAdapter showAdapter = new ShowSQLiteAdapter(this);        
+        
+		
 		Intent i = getIntent();
-		Show show = (Show) i.getSerializableExtra(EXTRA_SHOW);
+		this.show = (Show) i.getSerializableExtra(EXTRA_SHOW);		
+
+        showAdapter.open();     
+        //Valeurs à afficher dans la liste
+        Show showDB = showAdapter.getShow(this.show.getId());
+        showAdapter.close();
 
 		String url = "http://api.themoviedb.org/3/tv/"+ show.getId() +"?api_key=0d2d4cca633bc7bc04a564ac8266d3a1";
 
 		WebServices ws = new WebServices(this);
 		ws.parser = this;
 		ws.execute(url);
+		
+		fav.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View arg0) {
+
+                new ShowTask(ShowActivity.this, ShowActivity.this.show).execute();
+
+                ImageView fav = (ImageView) findViewById(R.id.show_favorite);
+                
+                fav.setImageDrawable(
+                        ShowActivity.this.getResources().getDrawable(
+                                R.drawable.star2));
+            }
+        });
 	}
 
 
