@@ -4,4 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:id="@+id/pref_showProgressLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleLarge" />
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/pref_showListContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/pref_liste_show"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" >
+        </ListView>
+    </RelativeLayout>
+    
 </LinearLayout>
