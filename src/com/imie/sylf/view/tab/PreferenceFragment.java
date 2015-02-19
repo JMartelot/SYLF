@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,15 +16,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
+import com.imie.sylf.ShowActivity;
 import com.imie.sylf.adapter.show.ShowAdapter;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
+import com.imie.sylf.view.show.ShowListFragment;
 
 
 public class PreferenceFragment extends Fragment implements Parser<Show> {
@@ -32,6 +37,7 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
     private static final String TAG_NAME = "name";
     private static final String TAG_POSTER = "poster_path";
     private static final String TAG_FIRST_AIR_DATE = "first_air_date";
+    private static final String EXTRA_SHOW = "show";
 
     String date;
     String genre;
@@ -66,8 +72,8 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
             this.url = "http://api.themoviedb.org/3/discover/tv" +
                     "?api_key=0d2d4cca633bc7bc04a564ac8266d3a1" +
                     "&sort_by=" + this.popularity +
-                    "&first_air_date.gte=1930-01-01" + this.startDate +
-                    "&first_air_date.lte=1950-12-31" + this.endDate +
+                    "&first_air_date.gte=" + this.startDate +
+                    "&first_air_date.lte=" + this.endDate +
                     "&with_genres=" + this.genre;
         }
 
@@ -85,7 +91,21 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
         }else{
             this.lv.setAdapter(adapter);
         }
+        
 
+        this.lv.setOnItemClickListener(new OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                    long id) {
+
+                Show show = (Show) PreferenceFragment.this.lv.getItemAtPosition(position);           
+
+                Intent intent = new Intent(PreferenceFragment.this.getActivity(), ShowActivity.class);
+                intent.putExtra(EXTRA_SHOW, show);
+                startActivity(intent);
+            }
+        });
 
         // TODO Send URL to web service and create parser
         
@@ -101,12 +121,12 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
         this.genre = preferences.getString("GENRES", "NOTHING");
 
         this.genre.trim();
-        this.genre.replaceAll(" ", ",");
+        this.genre = this.genre.replaceAll(" ", "|");
 
         if (!this.date.equals("all")) {
-            String[] dates = this.popularity.split("-");
-            this.startDate = dates[0]+"01-01";
-            this.endDate = dates[1]+"12-31";
+            String[] dates = this.date.split("-");
+            this.startDate = dates[0]+"-01-01";
+            this.endDate = dates[1]+"-12-31";
         }
 
         if (this.popularity.equals("popularity")) {
