@@ -20,4 +20,9 @@ To work fine, you need to import this libraries :
 	*[Nine old android](https://github.com/JakeWharton/NineOldAndroids/)
 	*[picasso](https://github.com/square/picasso)
 
+## Functions available soons
+
+	*Possibility to create his own list of thShow (favourites)
+	*A new landin page to load all datas
+
 
