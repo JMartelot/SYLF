@@ -7,7 +7,13 @@ import com.imie.sylf.entity.Show;
 import android.content.Context;
 import android.os.AsyncTask;
 
-
+/**
+ * 
+ * Async task to insert a relation author/show in database
+ * 
+ * @author Jean
+ *
+ */
 public class AuthorShowTask extends AsyncTask<Void, Void, Integer>{
     private Context context;
     private AuthorShow author_show;

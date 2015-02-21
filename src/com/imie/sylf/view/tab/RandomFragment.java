@@ -11,9 +11,9 @@ import com.imie.sylf.R;
 import com.imie.sylf.view.random.RandomLatestFragment;
 import com.imie.sylf.view.random.RandomSlideFragment;
 
-/** Genre list fragment.
+/** Random tab fragment.
  *
- * This fragment gives you an interface to list all your Genres.
+ * This fragment is the root for all the home fragment.
  *
  * @see android.app.Fragment
  */

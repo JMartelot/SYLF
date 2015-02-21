@@ -5,7 +5,11 @@ import com.imie.sylf.entity.Show;
 import android.content.Context;
 import android.os.AsyncTask;
 
-
+/**
+ * AsynTask used to insert a new show in the database
+ * @author Jean
+ *
+ */
 public class ShowTask extends AsyncTask<Void, Void, Integer>{
     private Context context;
     private Show show;

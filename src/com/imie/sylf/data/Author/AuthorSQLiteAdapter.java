@@ -15,6 +15,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
+ * This class is the adapter for the table Author
  * @author Jean
  *
  */
@@ -68,12 +69,15 @@ public class AuthorSQLiteAdapter {
 		this.helper.close();
 	}	
 
+	/**
+	 * Function to create the table id it doesn't exist
+	 */
     public void createTable(){
         db.execSQL(this.SCHEMA);
     }
 
 	/**
-	 * Function which get an author by this api id.
+	 * Function which get an author by this id.
 	 * 
 	 * @param id
 	 * @return
@@ -142,28 +146,10 @@ public class AuthorSQLiteAdapter {
 		return (int)this.db.insert(TABLE_AUTHOR, null, values);
 	}
 
-	/**
-	 * Function which update a show in database
-	 * 
-	 * @param show
-	 * @return number of rows updated
-	 */
-//	public int update(Show user){
-//		ContentValues values = new ContentValues();
-//
-//		values.put(COLUMN_LOGIN, user.getLogin());
-//		values.put(COLUMN_FIRSTNAME, user.getFirstname());
-//		values.put(COLUMN_LASTNAME, user.getLastname());
-//		values.put(COLUMN_PASSWORD, user.getPassword());
-//		
-//		String whereClause = COLUMN_ID + " = ?";
-//		String whereArgs[] = {String.valueOf(user.getId())};
-//		
-//		return this.db.update(TABLE_USER, values, whereClause, whereArgs);
-//	}
 
 	/**
-	 * Function which delete a show in database by this id
+	 * Function which delete an author in database by this id
+	 * 
 	 * @param author
 	 * @return number of rows deleted
 	 */

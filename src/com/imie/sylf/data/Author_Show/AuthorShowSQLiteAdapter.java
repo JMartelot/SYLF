@@ -16,13 +16,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
+ * Table which is the relation between the author and the show
+ * 
  * @author Jean
  *
  */
 public class AuthorShowSQLiteAdapter {
 
 	/**
-	 * Author constraint.
+	 * AuthorShow constraint.
 	 */
 	public static final String TABLE_AUTHOR_SHOW = "Author_Show";
 	public static final String COLUMN_ID = "_id";
@@ -69,6 +71,9 @@ public class AuthorShowSQLiteAdapter {
 		this.helper.close();
 	}
 	
+	/**
+	 * Function to create the table if it doesn't exist
+	 */
 	public void createTable(){
 	    db.execSQL(this.SCHEMA);
 	}
@@ -149,39 +154,19 @@ public class AuthorShowSQLiteAdapter {
 	}
 
 	/**
-	 * Function which update a show in database
-	 * 
-	 * @param show
-	 * @return number of rows updated
-	 */
-//	public int update(Show user){
-//		ContentValues values = new ContentValues();
-//
-//		values.put(COLUMN_LOGIN, user.getLogin());
-//		values.put(COLUMN_FIRSTNAME, user.getFirstname());
-//		values.put(COLUMN_LASTNAME, user.getLastname());
-//		values.put(COLUMN_PASSWORD, user.getPassword());
-//		
-//		String whereClause = COLUMN_ID + " = ?";
-//		String whereArgs[] = {String.valueOf(user.getId())};
-//		
-//		return this.db.update(TABLE_USER, values, whereClause, whereArgs);
-//	}
-
-	/**
-	 * Function which delete a show in database by this id
-	 * @param author
+	 * Function which delete a relation author/show in the database by this id
+	 * @param author_show
 	 * @return number of rows deleted
 	 */
-	public int delete(Author author){
+	public int delete(AuthorShow author_show){
 		String whereClause = COLUMN_ID + " = ?";
-		String whereArgs[] = {String.valueOf(author.getId())};
+		String whereArgs[] = {String.valueOf(author_show.getId())};
 		
 		return this.db.delete(TABLE_AUTHOR_SHOW, whereClause, whereArgs);
 	}
 	
 	/**
-	 * Convert a cursor to a show.
+	 * Convert a cursor to an author_show.
 	 * 
 	 * @param cursor
 	 * @return

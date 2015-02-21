@@ -27,6 +27,12 @@ import com.imie.sylf.entity.Genre;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
+/**
+ * Activity for the profil page
+ * 
+ * @author Jean
+ *
+ */
 public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
 
     private static final String TAG_NAME = "name";
@@ -87,7 +93,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         });
     }
 
-
+    
+    /**
+     * Method which initialize all the components of the activity
+     */
     private void initializeComponent() {
         this.doesntmatter = (CheckBox) findViewById(R.id.doesnt_matter);
         this.startDate = (Spinner) findViewById(R.id.start_date);
@@ -97,7 +106,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
 
         loadData();
     }
-
+    
+    /**
+     * Method to load the user genre in terms of the preferences file
+     */
     private void loadGenres(){
         SharedPreferences preferences = getSharedPreferences("Pref", MODE_PRIVATE);
 
@@ -116,7 +128,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
             }
         }
     }
-
+    
+    /**
+     * Load the other date which are in the prefernces file
+     */
     private void loadData(){
         SharedPreferences preferences = getSharedPreferences("Pref", MODE_PRIVATE);
 
@@ -143,7 +158,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
 
     }
 
-
+    
+    /**
+     * Method to display dates in the spinner item
+     */
     private void displayDate(){
         //Get dates since the year 1930
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -166,7 +184,11 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         spinner2.setSelection(adapter.getPosition(""+thisYear));
     }
 
-
+    
+    /**
+     * Method to create an event on the onclick of a radio button
+     * @param view
+     */
     public void onRadioButtonClicked(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
@@ -250,7 +272,10 @@ public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
         listPopulate(this.genreList);
 
     }
-
+    /**
+     * Bind the list of genres with the checkbox in the activity
+     * @param liste
+     */
     public void listPopulate(List<Genre> liste) {
         int i =0;
 

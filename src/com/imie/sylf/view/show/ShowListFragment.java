@@ -141,6 +141,10 @@ implements Parser<Show>{
 		listPopulate(showList);
 	}
 
+	/**
+	 * Method which create the list of shows
+	 * @param liste
+	 */
 	public void listPopulate(List<Show> liste) {
 
 		this.adapter = new ShowAdapter(this.getActivity(), liste);

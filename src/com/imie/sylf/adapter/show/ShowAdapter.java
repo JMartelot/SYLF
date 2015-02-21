@@ -2,10 +2,6 @@ package com.imie.sylf.adapter.show;
 
 import java.util.List;
 
-import com.imie.sylf.R;
-import com.imie.sylf.entity.Show;
-import com.imie.sylf.util.DownloadImageTask;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.imie.sylf.R;
+import com.imie.sylf.entity.Show;
+import com.imie.sylf.util.DownloadImageTask;
+
+/**
+ * 
+ * Adapter to create a row for the list of shows
+ * 
+ * @author Jean
+ *
+ */
 public class ShowAdapter extends ArrayAdapter<Show> {
     private Context context;
     private List<Show> show;

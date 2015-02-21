@@ -13,6 +13,12 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
+/**
+ * Adapter for the action bar.
+ * It's add the different tab of the application
+ * @author Jean
+ *
+ */
 public class TabsAdapter extends FragmentPagerAdapter implements TabListener, ViewPager.OnPageChangeListener {
 	 
     private final SherlockFragmentActivity mActivity;

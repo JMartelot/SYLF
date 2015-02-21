@@ -2,14 +2,14 @@ package com.imie.sylf;
 
 
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.imie.sylf.data.SylfSqlLiteOpenHelper;
 import com.imie.sylf.data.Author.AuthorSQLiteAdapter;
 import com.imie.sylf.data.Author_Show.AuthorShowSQLiteAdapter;
-import com.imie.sylf.data.Show.ShowSQLiteAdapter;
-import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.view.tab.GenreFragment;
 import com.imie.sylf.view.tab.PreferenceFragment;
@@ -18,10 +18,12 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-
+/**
+ * Main activity of the application
+ * 
+ * @author Jean
+ *
+ */
 public class HomeActivity extends TabSwipeActivity {
 
     @Override

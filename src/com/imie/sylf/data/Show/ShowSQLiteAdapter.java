@@ -20,6 +20,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
+ * Table which contain shows, it's use for the favourites list
+ * 
  * @author Jean
  *
  */

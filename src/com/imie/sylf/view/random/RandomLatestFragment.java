@@ -25,9 +25,9 @@ import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** Genre list fragment.
+/** Random list fragment.
  *
- * This fragment gives you an interface to list all your Genres.
+ * This fragment gives you an interface to list all your Random.
  *
  * @see android.app.Fragment
  */
@@ -96,7 +96,11 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
 
         listPopulate(showList);
     }
-
+    
+    /**
+     * Method to populate and create the horizontal scroll view of the home page
+     * @param liste
+     */
     public void listPopulate(List<Show> liste) {
 
         for (Show show : liste) {

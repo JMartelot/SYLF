@@ -6,7 +6,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.imie.sylf.view.genre.GenreListFragment;
 
 /**
- * Class for  the favourites management, but unused in the application version 1.0
+ * Activity for  the favourites management, but unused in the application version 1.0
  * 
  * @author Jean
  *

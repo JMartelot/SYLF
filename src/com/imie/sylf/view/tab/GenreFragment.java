@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import com.imie.sylf.R;
 import com.imie.sylf.view.genre.GenreListFragment;
 
-/** Genre list fragment.
+/** Genre tab fragment.
  *
- * This fragment gives you an interface to list all your Genres.
+ * This fragment is the root fragment for genre
  *
  * @see android.app.Fragment
  */

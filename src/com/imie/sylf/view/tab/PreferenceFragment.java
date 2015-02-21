@@ -29,7 +29,11 @@ import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
-
+/**
+ * Fragment to display the list of show in terms of the user preferences
+ * @author Jean
+ *
+ */
 public class PreferenceFragment extends Fragment implements Parser<Show> {
 
     private static final String TAG_ID = "id";
@@ -109,6 +113,9 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
         return view;
     }
 
+    /**
+     * Method to load the preferences in the preference file
+     */
     private void loadPreferences(){
         Activity ctx = this.getActivity();
         SharedPreferences preferences = ctx.getSharedPreferences("Pref", ctx.MODE_PRIVATE);
@@ -169,7 +176,11 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
 
     }
-
+    
+    /**
+     * Method to create the list of show
+     * @param liste
+     */
     public void listPopulate(List<Show> liste) {
 
         this.adapter = new ShowAdapter(this.getActivity(), liste);

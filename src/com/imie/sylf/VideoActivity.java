@@ -22,6 +22,11 @@ import com.imie.sylf.util.Config;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
+/**
+ * Activity which is used to display a tv show video
+ * @author Jean
+ *
+ */
 public class VideoActivity extends YouTubeBaseActivity implements
 YouTubePlayer.OnInitializedListener, Parser<Show> {
 
@@ -122,7 +127,10 @@ YouTubePlayer.OnInitializedListener, Parser<Show> {
 			super.onBackPressed();
 		}	
 	}
-
+	
+	/**
+	 * Method which populate the video in the component of the view
+	 */
 	public void bindVideo() {		
 		youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
 		// Initializing video player with developer key

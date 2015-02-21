@@ -25,6 +25,11 @@ import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+/**
+ * Activity to display details of a tv show
+ * @author Jean
+ *
+ */
 public class ShowActivity extends SherlockActivity implements Parser<Show>
 {
     /** Model data. */
@@ -224,7 +229,11 @@ public class ShowActivity extends SherlockActivity implements Parser<Show>
         entityPopulate(show);
 
     }
-
+    
+    /**
+     * Bin the tv show datas with all component of the view
+     * @param entity
+     */
     public void entityPopulate(Show entity) {
 
         this.titleView.setText(entity.getTitle());

@@ -8,7 +8,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+/**
+ * Deprecetaded class used for download image
+ * 
+ * @author Jean
+ *
+ */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
     LinearLayout scrollView;

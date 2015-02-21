@@ -1,5 +1,11 @@
 package com.imie.sylf.util;
 
+/**
+ * Class config for the API youtube to watch video
+ * 
+ * @author Jean
+ *
+ */
 public class Config {
     // Google Console APIs developer key
     // Replace this key with your's
