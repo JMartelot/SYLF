@@ -1,7 +1,5 @@
 package com.imie.sylf;
 
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,14 +17,16 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.PlayerStyle;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.imie.sylf.entity.Author;
-import com.imie.sylf.entity.Genre;
-import com.imie.sylf.entity.Season;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Config;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
+/**
+ * Activity which is used to display a tv show video
+ * @author Jean
+ *
+ */
 public class VideoActivity extends YouTubeBaseActivity implements
 YouTubePlayer.OnInitializedListener, Parser<Show> {
 
@@ -127,25 +127,13 @@ YouTubePlayer.OnInitializedListener, Parser<Show> {
 			super.onBackPressed();
 		}	
 	}
-
-	@Override
-	public void listPopulate(List<Show> liste) {
-		// TODO Auto-generated method stub
-
-	}
-
-
+	
+	/**
+	 * Method which populate the video in the component of the view
+	 */
 	public void bindVideo() {		
 		youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
 		// Initializing video player with developer key
 		youTubeView.initialize(Config.DEVELOPER_KEY, this);
 	}
-
-
-	@Override
-	public void entityPopulate(Show entity) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -1,9 +1,15 @@
 package com.imie.sylf;
 
 
+
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.imie.sylf.data.Author.AuthorSQLiteAdapter;
+import com.imie.sylf.data.Author_Show.AuthorShowSQLiteAdapter;
 import com.imie.sylf.util.TabSwipeActivity;
 import com.imie.sylf.view.tab.GenreFragment;
 import com.imie.sylf.view.tab.PreferenceFragment;
@@ -12,9 +18,12 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import android.content.Intent;
-import android.os.Bundle;
-
+/**
+ * Main activity of the application
+ * 
+ * @author Jean
+ *
+ */
 public class HomeActivity extends TabSwipeActivity {
 
     @Override
@@ -23,18 +32,17 @@ public class HomeActivity extends TabSwipeActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        
+
         initUIL();
 
         addTab( R.drawable.random, RandomFragment.class, null );
         addTab( R.drawable.favorite, PreferenceFragment.class,null );
         addTab( R.drawable.genre, GenreFragment.class, null ); 
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.split_action_bar, menu);
         return super.onCreateOptionsMenu(menu);
@@ -42,10 +50,18 @@ public class HomeActivity extends TabSwipeActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_profil) {
-            openProfil();
+
+        switch (item.getItemId()) {
+            case R.id.action_profil:
+                openProfil();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    public void onBackPressed() {
     }
 
     private void initUIL(){
@@ -62,11 +78,39 @@ public class HomeActivity extends TabSwipeActivity {
         ImageLoader.getInstance().init(config);
     }
     
+    /**
+     * Method to initialize the Database and table but unused in this version
+     */
+    private void initDB(){
+
+        AuthorShowSQLiteAdapter as = new AuthorShowSQLiteAdapter(this);
+        AuthorSQLiteAdapter author = new AuthorSQLiteAdapter(this);
+        
+        as.open();
+        as.createTable();
+        as.close();
+        
+        author.open();
+        author.createTable();
+        author.close();
+        
+    }
+
     private void openProfil(){
 
         Intent intent = new Intent(this, ProfilActivity.class);
         startActivity(intent);
     }
     
-    
+    /**
+     * Unused in this version.
+     * 
+     */
+    private void openFavourites(){
+
+        Intent intent = new Intent(this, FavouritesActivity.class);
+        startActivity(intent);
+    }
+
+
 }

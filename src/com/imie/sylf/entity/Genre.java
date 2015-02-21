@@ -3,12 +3,27 @@ package com.imie.sylf.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Entity for the genre
+ * 
+ * @author Jean
+ *
+ */
 public class Genre implements Serializable {
-
+    
+    /**
+     * Id of the genre
+     */
     protected int id;
 
+    /**
+     * Title genre
+     */
     protected String title;
-
+    
+    /**
+     * List of shows
+     */
     protected ArrayList<Show> shows;
 
     
@@ -27,7 +42,11 @@ public class Genre implements Serializable {
     public Genre() {
 
     }
-    
+    /**
+     * Constructor with all attributes
+     * @param id
+     * @param title
+     */
     public Genre(int id, String title) {
         super();
         this.id = id;

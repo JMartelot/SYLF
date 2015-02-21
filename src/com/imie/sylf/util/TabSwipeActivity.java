@@ -5,6 +5,11 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
+/**
+ * Class which create the swipe tab
+ * @author Jean
+ *
+ */
 public class TabSwipeActivity extends SherlockFragmentActivity {
 	private ViewPager mViewPager;
     private TabsAdapter adapter;

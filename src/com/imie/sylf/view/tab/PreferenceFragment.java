@@ -17,10 +17,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
 import com.imie.sylf.ShowActivity;
@@ -28,9 +28,12 @@ import com.imie.sylf.adapter.show.ShowAdapter;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
-import com.imie.sylf.view.show.ShowListFragment;
 
-
+/**
+ * Fragment to display the list of show in terms of the user preferences
+ * @author Jean
+ *
+ */
 public class PreferenceFragment extends Fragment implements Parser<Show> {
 
     private static final String TAG_ID = "id";
@@ -106,12 +109,13 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
                 startActivity(intent);
             }
         });
-
-        // TODO Send URL to web service and create parser
         
         return view;
     }
 
+    /**
+     * Method to load the preferences in the preference file
+     */
     private void loadPreferences(){
         Activity ctx = this.getActivity();
         SharedPreferences preferences = ctx.getSharedPreferences("Pref", ctx.MODE_PRIVATE);
@@ -172,20 +176,17 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
 
     }
-
-    @Override
+    
+    /**
+     * Method to create the list of show
+     * @param liste
+     */
     public void listPopulate(List<Show> liste) {
 
         this.adapter = new ShowAdapter(this.getActivity(), liste);
         // Attach the adapter to a ListView
         ListView listView = (ListView) view.findViewById(R.id.pref_liste_show);
         listView.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void entityPopulate(Show entity) {
-        // TODO Auto-generated method stub
 
     }
 }

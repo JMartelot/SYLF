@@ -21,7 +21,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
+/**
+ * Class use to get the stream of the movie DB api
+ * 
+ * @author Jean
+ *
+ */
 public class WebServices extends AsyncTask<String,Void,String> {
 
     public Parser parser = null;
@@ -30,16 +35,32 @@ public class WebServices extends AsyncTask<String,Void,String> {
     LinearLayout linearContainer = null;
     RelativeLayout relativeContainer = null;
     
+    /**
+     * Default constructor
+     * @param context
+     */
     public WebServices(Activity context) {
         this.context = context;
     }
     
+    /**
+     * Constructor to display a loader in a LinearLayout
+     * @param context
+     * @param progressBar
+     * @param container
+     */
     public WebServices(Activity context, LinearLayout progressBar, LinearLayout container) {
         this.context = context;
         this.progressBar = progressBar;
         this.linearContainer = container;
     }
     
+    /**
+     * Constructor to display a loader in a RelativeLayout
+     * @param context
+     * @param progressBar
+     * @param container
+     */
     public WebServices(Activity context, LinearLayout progressBar, RelativeLayout container) {
         this.context = context;
         this.progressBar = progressBar;

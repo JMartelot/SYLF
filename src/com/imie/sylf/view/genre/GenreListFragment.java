@@ -142,7 +142,10 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         listPopulate(genreList);
     }
     
-    @Override
+    /**
+     * Method to bind the data with the list view
+     * @param liste
+     */
     public void listPopulate(List<Genre> liste) {
         
         this.adapter = new GenreAdapter(this.getActivity(), liste);
@@ -152,11 +155,5 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         
         listView.setAdapter(adapter);
     }
-
-    @Override
-    public void entityPopulate(Genre entity) {
-        // TODO Auto-generated method stub
-        
-    }    
     
 }

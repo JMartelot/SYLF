@@ -1,11 +1,15 @@
 package com.imie.sylf.util;
 
-import java.util.List;
-
-import android.os.Bundle;
-
+/**
+ * Interface use for parse JSON after the execution of an AsyncTask and web services
+ * @author Jean
+ *
+ * @param <T>
+ */
 public abstract interface Parser<T>{
+    /**
+     * Method to parse the JSON stream
+     * @param output
+     */
     public abstract void parseJSON(String output);
-    public abstract void listPopulate(List<T> liste);
-    public abstract void entityPopulate(T entity);
 }

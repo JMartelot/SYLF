@@ -30,9 +30,9 @@ import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
-/** Genre list fragment.
+/** Random Slide fragment.
  *
- * This fragment gives you an interface to list all your Genres.
+ * This fragment gives you an interface for the slide show.
  *
  * @see android.app.Fragment
  */
@@ -106,7 +106,10 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
     }
 
-    @Override
+    /**
+     * Method to create and display the list of show in the slider
+     * @param liste
+     */
     public void listPopulate(List<Show> liste) {
         int i = 0;
         for (Show show : liste) {
@@ -124,7 +127,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
                 
                 @Override
                 public void onSliderClick(BaseSliderView slider) {
-                    // TODO Auto-generated method stub
                     Show show = item;
                     
                     Intent intent = new Intent(RandomSlideFragment.this.getActivity(), ShowActivity.class);
@@ -138,12 +140,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
             
             i++;
         }
-    }
-
-    @Override
-    public void entityPopulate(Show entity) {
-        // TODO Auto-generated method stub
-
     }
 }
 

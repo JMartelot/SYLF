@@ -7,41 +7,77 @@ import android.R.bool;
 import android.graphics.Bitmap;
 
 public class Show implements Serializable {
-    
+    /**
+     * Id show
+     */
     protected int id;
-
+    /**
+     * Title show
+     */
     protected String title;
-
+    /**
+     * Plot show
+     */
     protected String plot;
-
+    /**
+     * runtime show
+     */
     protected String runtime;
-
+    /**
+     * Released show
+     */
     protected String released;
-
+    /**
+     * Actors show
+     */
     protected String actors;
-
+    /**
+     * Writers Show
+     */
     protected String writers;
-
+    /**
+     * Directors show
+     */
     protected String directors;
-
+    /**
+     * Poster path show
+     */
     protected String poster;
-    
+    /**
+     * Backdrop path show
+     */
     private String backdrop_path;
-    
+    /**
+     * Video Show
+     */
     private String video;
-    
+    /**
+     * Status show
+     */
     private boolean in_production;
-    
+    /**
+     * Vote average show
+     */
     private double vote_average;
-    
+    /**
+     * Vote count Show
+     */
     private int vote_count;
-    
+    /**
+     * Genres list of the show
+     */
     protected ArrayList<Genre> genres;
-    
+    /**
+     * Authors list of the show
+     */
     private ArrayList<Author> authors;
-
+    /**
+     * Seasons list of the show
+     */
     private ArrayList<Season> seasons;
-    
+    /**
+     * Language list of the show
+     */
     private ArrayList<String> languages;
 
     /* (non-Javadoc)
@@ -256,7 +292,23 @@ public class Show implements Serializable {
 	public void setVideo(String video) {
 		this.video = video;
 	}
-
+	
+	/**
+	 * Constructor with all the entity attributes
+	 * @param id
+	 * @param title
+	 * @param plot
+	 * @param runtime
+	 * @param released
+	 * @param poster
+	 * @param backdrop_path
+	 * @param in_production
+	 * @param vote_average
+	 * @param vote_count
+	 * @param genres
+	 * @param authors
+	 * @param seasons
+	 */
 	public Show(int id, String title, String plot, String runtime,
             String released, String poster, String backdrop_path, boolean in_production,
             double vote_average, int vote_count, ArrayList<Genre> genres,

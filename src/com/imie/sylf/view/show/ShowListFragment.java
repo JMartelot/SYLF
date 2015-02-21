@@ -49,14 +49,9 @@ public class ShowListFragment extends Fragment
 implements Parser<Show>{
 
 	private static final String TAG_ID = "id";
-	private static final String TAG_ORIGINAL_NAME = "original_name";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_POSTER = "poster_path";
 	private static final String TAG_FIRST_AIR_DATE = "first_air_date";
-	private static final String TAG_ORIGIN_COUNTRY = "origin_country";
-	private static final String TAG_POPULARITY = "popularity";
-	private static final String TAG_NOTE = "vote_average";
-	private static final String TAG_VOTE = "vote_count";
 	private static final String EXTRA_SHOW = "show";
 
 	private List<Show> showList = new ArrayList<Show>();
@@ -127,12 +122,7 @@ implements Parser<Show>{
 
 					String id = c.getString(TAG_ID);
 					String name = c.getString(TAG_NAME);
-					String original_name = c.getString(TAG_ORIGINAL_NAME);
-					String country = c.getString(TAG_ORIGIN_COUNTRY);
-					String popularity = c.getString(TAG_POPULARITY);
 					String poster = c.getString(TAG_POSTER);
-					String note = c.getString(TAG_NOTE);
-					String vote = c.getString(TAG_VOTE);
 					String first_air_date = c.getString(TAG_FIRST_AIR_DATE);
 
 					show.setId(Integer.parseInt(id));
@@ -151,19 +141,16 @@ implements Parser<Show>{
 		listPopulate(showList);
 	}
 
-	@Override
+	/**
+	 * Method which create the list of shows
+	 * @param liste
+	 */
 	public void listPopulate(List<Show> liste) {
 
 		this.adapter = new ShowAdapter(this.getActivity(), liste);
 		// Attach the adapter to a ListView
 		ListView listView = (ListView) view.findViewById(R.id.liste_show);
 		listView.setAdapter(adapter);
-	}
-
-	@Override
-	public void entityPopulate(Show entity) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

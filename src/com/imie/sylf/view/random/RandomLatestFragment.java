@@ -10,30 +10,24 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
 import com.imie.sylf.ShowActivity;
 import com.imie.sylf.entity.Show;
-import com.imie.sylf.util.DownloadImageTask;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
-import com.imie.sylf.view.show.ShowListFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** Genre list fragment.
+/** Random list fragment.
  *
- * This fragment gives you an interface to list all your Genres.
+ * This fragment gives you an interface to list all your Random.
  *
  * @see android.app.Fragment
  */
@@ -102,8 +96,11 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
 
         listPopulate(showList);
     }
-
-    @Override
+    
+    /**
+     * Method to populate and create the horizontal scroll view of the home page
+     * @param liste
+     */
     public void listPopulate(List<Show> liste) {
 
         for (Show show : liste) {
@@ -127,7 +124,6 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
                 
                 @Override
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
                     Show show = item;
                     Intent intent = new Intent(RandomLatestFragment.this.getActivity(), ShowActivity.class);
                     intent.putExtra(EXTRA_SHOW, show);
@@ -136,12 +132,6 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
             });   
 
         }
-    }
-
-    @Override
-    public void entityPopulate(Show entity) {
-        // TODO Auto-generated method stub
-
     }
 }
 
