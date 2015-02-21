@@ -58,14 +58,14 @@
                             android:textSize="20sp"
                             android:textStyle="bold|italic" />
 
-                        <ImageView
-                            android:id="@+id/show_favorite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/show_title"
-                            android:layout_marginLeft="20dp"
-                            android:clickable="true"
-                            android:src="@drawable/star"/>
+<!--                         <ImageView -->
+<!--                             android:id="@+id/show_favorite" -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:layout_toRightOf="@id/show_title" -->
+<!--                             android:layout_marginLeft="20dp" -->
+<!--                             android:clickable="true" -->
+<!--                             android:src="@drawable/star"/> -->
                     </RelativeLayout>
 
                     <TextView

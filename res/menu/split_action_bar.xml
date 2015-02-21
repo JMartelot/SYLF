@@ -5,6 +5,5 @@
           android:icon="@drawable/profil"
           android:title="@string/profil"
           android:showAsAction="ifRoom" />
-    
 
 </menu>

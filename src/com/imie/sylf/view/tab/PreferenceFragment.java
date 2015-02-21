@@ -17,10 +17,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.imie.sylf.R;
 import com.imie.sylf.ShowActivity;
@@ -28,7 +28,6 @@ import com.imie.sylf.adapter.show.ShowAdapter;
 import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
-import com.imie.sylf.view.show.ShowListFragment;
 
 
 public class PreferenceFragment extends Fragment implements Parser<Show> {
@@ -106,8 +105,6 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
                 startActivity(intent);
             }
         });
-
-        // TODO Send URL to web service and create parser
         
         return view;
     }
@@ -173,19 +170,12 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
 
     }
 
-    @Override
     public void listPopulate(List<Show> liste) {
 
         this.adapter = new ShowAdapter(this.getActivity(), liste);
         // Attach the adapter to a ListView
         ListView listView = (ListView) view.findViewById(R.id.pref_liste_show);
         listView.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void entityPopulate(Show entity) {
-        // TODO Auto-generated method stub
 
     }
 }

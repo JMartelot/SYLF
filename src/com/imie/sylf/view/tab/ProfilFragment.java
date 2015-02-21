@@ -8,29 +8,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.imie.sylf.R;
-import com.imie.sylf.entity.Genre;
-import com.imie.sylf.util.Parser;
-import com.imie.sylf.util.WebServices;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Spinner;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.imie.sylf.R;
+import com.imie.sylf.entity.Genre;
+import com.imie.sylf.util.Parser;
+import com.imie.sylf.util.WebServices;
 
 public class ProfilFragment extends Fragment implements Parser<Genre>  {
 
@@ -74,7 +68,6 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 if(ProfilFragment.this.cb.isChecked()){
                     ProfilFragment.this.rl_date.setVisibility(View.GONE);
                 }else{
@@ -142,7 +135,6 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
         
     }
 
-    @Override
     public void listPopulate(List<Genre> liste) {
         int i =0;
 
@@ -165,10 +157,4 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
             i++;
           }
         }
-
-    @Override
-    public void entityPopulate(Genre entity) {
-        // TODO Auto-generated method stub
-        
-    }
 }

@@ -106,7 +106,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
     }
 
-    @Override
     public void listPopulate(List<Show> liste) {
         int i = 0;
         for (Show show : liste) {
@@ -124,7 +123,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
                 
                 @Override
                 public void onSliderClick(BaseSliderView slider) {
-                    // TODO Auto-generated method stub
                     Show show = item;
                     
                     Intent intent = new Intent(RandomSlideFragment.this.getActivity(), ShowActivity.class);
@@ -138,12 +136,6 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
             
             i++;
         }
-    }
-
-    @Override
-    public void entityPopulate(Show entity) {
-        // TODO Auto-generated method stub
-
     }
 }
 
