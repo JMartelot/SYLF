@@ -12,18 +12,31 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/**
+ * Adapter Genre
+ * @author Quentin
+ *
+ */
 public class GenreAdapter extends ArrayAdapter<Genre> {
     private Context context;
     private List<Genre> genre;
 
+    /**
+     * Adapter for genre list
+     * @param context
+     * @param genre
+     */
     public GenreAdapter(Context context, List<Genre> genre) {
         super(context, android.R.layout.simple_list_item_1,genre);
         this.context = context;
         this.genre = genre;
     }
 
-    /* (non-Javadoc)
-     * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+ 
+    /**
+     * Get View for list genre
+     * @param convertView
+     * @param parent
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

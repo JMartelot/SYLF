@@ -14,6 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Adapter Show
+ * @author Quentin
+ *
+ */
 public class ShowAdapter extends ArrayAdapter<Show> {
     private Context context;
     private List<Show> show;
@@ -24,8 +29,10 @@ public class ShowAdapter extends ArrayAdapter<Show> {
         this.show = show;
     }
 
-    /* (non-Javadoc)
-     * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+    /**
+     * Get View for list show
+     * @param context
+     * @param genre
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

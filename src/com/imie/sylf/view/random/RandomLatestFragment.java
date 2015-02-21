@@ -49,6 +49,9 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
     private LinearLayout inHorizontalScrollView = null;
     private static final String EXTRA_SHOW = "show";
 
+    /**
+     * Creation of the view random latest Fragement
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater,
@@ -69,6 +72,9 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
         return this.view;
     }
 
+    /**
+     *Parse Json
+     */
     @Override
     public void parseJSON(String stream){
         if (stream != null) {
@@ -103,6 +109,9 @@ public class RandomLatestFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
     }
 
+    /**
+     * Initialisation of the list show in random fragement
+     */
     @Override
     public void listPopulate(List<Show> liste) {
 

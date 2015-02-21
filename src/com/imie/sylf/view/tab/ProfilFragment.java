@@ -32,6 +32,13 @@ import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Profil fragment.
+ * 
+ * This fragment gives you an interface to edit your profil
+ * 
+ * @see android.app.Fragment
+ */
 public class ProfilFragment extends Fragment implements Parser<Genre>  {
 
     private static final String TAG_NAME = "name";
@@ -44,6 +51,9 @@ public class ProfilFragment extends Fragment implements Parser<Genre>  {
     private JSONArray genres;
     private LinearLayout row;
 
+    /**
+     * Create view
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater,

@@ -65,6 +65,9 @@ implements Parser<Show>{
 	private ShowAdapter adapter = null;
 	private ListView lv = null;
 
+	/**
+	 * Creation of the view Show list 
+	 */
 	@Override
 	public View onCreateView(
 			LayoutInflater inflater,
@@ -111,6 +114,9 @@ implements Parser<Show>{
 		return view;
 	}
 
+	/**
+	 * Parse json
+	 */
 	@Override
 	public void parseJSON(String stream){
 		if (stream != null) {
@@ -151,6 +157,9 @@ implements Parser<Show>{
 		listPopulate(showList);
 	}
 
+	/**
+	 * Initialization of the list
+	 */
 	@Override
 	public void listPopulate(List<Show> liste) {
 

@@ -13,7 +13,11 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-
+/**
+ * Class TabsAdapter Adapter for tabs
+ * @author Quentin
+ *
+ */
 public class TabsAdapter extends FragmentPagerAdapter implements TabListener, ViewPager.OnPageChangeListener {
 	 
     private final SherlockFragmentActivity mActivity;
@@ -34,6 +38,11 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
         mActionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
     }
 
+    /**
+     * Info on tabs
+     * @author Quentin
+     *
+     */
     private static class TabInfo {
         public final Class fragmentClass;
         public final Bundle args;
@@ -44,6 +53,12 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
         }
     }
 
+    /**
+     * Add tabs
+     * @param resId
+     * @param fragmentClass
+     * @param args
+     */
     public void addTab( int resId, Class fragmentClass, Bundle args ) {
         final TabInfo tabInfo = new TabInfo( fragmentClass, args );
 
@@ -59,12 +74,18 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
         notifyDataSetChanged();
     }
 
+    /**
+     * get Fragement
+     */
     @Override
     public Fragment getItem(int position) {
         final TabInfo tabInfo = (TabInfo) mTabs.get( position );
         return (Fragment) Fragment.instantiate( mActivity, tabInfo.fragmentClass.getName(), tabInfo.args );
     }
 
+    /**
+     * get Count
+     */
     @Override
     public int getCount() {
         return mTabs.size();
@@ -76,10 +97,18 @@ public class TabsAdapter extends FragmentPagerAdapter implements TabListener, Vi
     public void onPageScrolled(int arg0, float arg1, int arg2) {
     }
 
+    /**
+     * Position on page selected
+     */
     public void onPageSelected(int position) {
         mActionBar.setSelectedNavigationItem( position );
     }
 
+    /**
+     * on tab Selected
+     * @param tab
+     * @param ft
+     */
     @Override
 	public void onTabSelected(Tab tab,
 			android.support.v4.app.FragmentTransaction ft) {

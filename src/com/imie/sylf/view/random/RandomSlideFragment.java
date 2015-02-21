@@ -49,6 +49,9 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
     private SliderLayout mDemoSlider;
     private static final String EXTRA_SHOW = "show";
 
+    /**
+     * Creation of the view Random Slide
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater,
@@ -69,6 +72,9 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         return this.view;
     }
 
+    /**
+     * Parse Json
+     */
     @Override
     public void parseJSON(String stream){
         if (stream != null) {
@@ -106,6 +112,9 @@ public class RandomSlideFragment extends Fragment implements Parser<Show> {
         listPopulate(showList);
     }
 
+    /**
+     * Initialization in the random slide to the show
+     */
     @Override
     public void listPopulate(List<Show> liste) {
         int i = 0;

@@ -36,6 +36,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Show Activity
+ * @author Quentin
+ *
+ */
 public class ShowActivity extends SherlockActivity implements Parser<Show>
 {
 	/** Model data. */

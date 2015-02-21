@@ -21,7 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
+/**
+ * Utils Webservice
+ * @author Quentin
+ *
+ */
 public class WebServices extends AsyncTask<String,Void,String> {
 
     public Parser parser = null;
@@ -30,25 +34,41 @@ public class WebServices extends AsyncTask<String,Void,String> {
     LinearLayout linearContainer = null;
     RelativeLayout relativeContainer = null;
     
+    /**
+     * 
+     * @param context
+     */
     public WebServices(Activity context) {
         this.context = context;
     }
     
+    /**
+     * 
+     * @param context
+     * @param progressBar
+     * @param container
+     */
     public WebServices(Activity context, LinearLayout progressBar, LinearLayout container) {
         this.context = context;
         this.progressBar = progressBar;
         this.linearContainer = container;
     }
     
+    /**
+     * 
+     * @param context
+     * @param progressBar
+     * @param container
+     */
     public WebServices(Activity context, LinearLayout progressBar, RelativeLayout container) {
         this.context = context;
         this.progressBar = progressBar;
         this.relativeContainer = container;
     }
     
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#onPreExecute()
-     */
+   /**
+    * On pre execute
+    */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -66,6 +86,9 @@ public class WebServices extends AsyncTask<String,Void,String> {
         }
     }
     
+    /**
+     * Do in Background
+     */
     @Override
     protected String doInBackground(String... urls) {
         StringBuilder sb = new StringBuilder();

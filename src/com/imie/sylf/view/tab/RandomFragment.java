@@ -19,7 +19,10 @@ import com.imie.sylf.view.random.RandomSlideFragment;
  */
 public class RandomFragment extends Fragment{
     
-
+		
+	/**
+	 * Create View
+	 */
     @Override
     public View onCreateView(
             LayoutInflater inflater,

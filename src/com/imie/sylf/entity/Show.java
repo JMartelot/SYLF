@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import android.R.bool;
 import android.graphics.Bitmap;
 
+/**
+ * Entity Show
+ * @author Quentin
+ *
+ */
 public class Show implements Serializable {
     
     protected int id;
@@ -193,70 +198,150 @@ public class Show implements Serializable {
          this.genres = value;
     }
 
+    /**
+     * 
+     * @return backdrop path
+     */
     public String getBackdrop_path() {
         return backdrop_path;
     }
 
+    /**
+     * 
+     * @param backdrop_path
+     */
     public void setBackdrop_path(String backdrop_path) {
         this.backdrop_path = backdrop_path;
     }
 
+    /**
+     * 
+     * @return in production
+     */
     public boolean getIn_production() {
         return in_production;
     }
 
+    /**
+     * 
+     * @param in_production
+     */
     public void setIn_production(boolean in_production) {
         this.in_production = in_production;
     }
 
+    /**
+     * 
+     * @return vote average
+     */
     public double getVote_average() {
         return vote_average;
     }
 
+    /**
+     * 
+     * @param vote_average
+     */
     public void setVote_average(double vote_average) {
         this.vote_average = vote_average;
     }
 
+    /**
+     * 
+     * @return vote count
+     */
     public int getVote_count() {
         return vote_count;
     }
 
+    /**
+     * 
+     * @param vote_count
+     */
     public void setVote_count(int vote_count) {
         this.vote_count = vote_count;
     }
-
+    
+    /**
+     * 
+     * @return authors
+     */
     public ArrayList<Author> getAuthors() {
         return authors;
     }
 
+    /**
+     * 
+     * @param authors
+     */
     public void setAuthors(ArrayList<Author> authors) {
         this.authors = authors;
     }
 
+    /**
+     * 
+     * @return Languages
+     */
     public ArrayList<String> getLanguages() {
         return languages;
     }
 
+    /**
+     * 
+     * @param languages
+     */
     public void setLanguages(ArrayList<String> languages) {
         this.languages = languages;
     }
     
+    /**
+     * 
+     * @return seasons
+     */
     public ArrayList<Season> getSeasons() {
         return seasons;
     }
 
+    /**
+     * 
+     * @param seasons
+     */
     public void setSeasons(ArrayList<Season> seasons) {
         this.seasons = seasons;
     }
     
+    /**
+     * 
+     * @return video
+     */
     public String getVideo() {
 		return video;
 	}
 
+    /**
+     * 
+     * @param video
+     */
 	public void setVideo(String video) {
 		this.video = video;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param title
+	 * @param plot
+	 * @param runtime
+	 * @param released
+	 * @param poster
+	 * @param backdrop_path
+	 * @param in_production
+	 * @param vote_average
+	 * @param vote_count
+	 * @param genres
+	 * @param authors
+	 * @param seasons
+	 */
 	public Show(int id, String title, String plot, String runtime,
             String released, String poster, String backdrop_path, boolean in_production,
             double vote_average, int vote_count, ArrayList<Genre> genres,

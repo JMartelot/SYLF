@@ -3,6 +3,11 @@ package com.imie.sylf.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Entity Genre
+ * @author Quentin
+ *
+ */
 public class Genre implements Serializable {
 
     protected int id;

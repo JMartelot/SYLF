@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="libs/AndroidImageSlider/bin/androidimageslider.jar;libs/AndroidImageSlider/libs/picasso-2.3.3.jar;libs/ActionBarSherlock/actionbarsherlock/bin/actionbarsherlock.jar;libs/AndroidImageSlider/libs/NineOldAndroid-2.4.0.jar;libs/ActionBarSherlock/actionbarsherlock/libs/android-support-v4.jar;libs/universal-image-loader-1.9.3.jar;libs/YouTubeAndroidPlayerApi.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.6" sourcefiles="src/com/imie/sylf/VideoActivity.java" sourcepath="gen;src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

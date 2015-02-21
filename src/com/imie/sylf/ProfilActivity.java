@@ -31,6 +31,11 @@ import com.imie.sylf.entity.Show;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
+/**
+ * Profil Activity
+ * @author Quentin
+ *
+ */
 public class ProfilActivity extends SherlockActivity implements Parser<Genre> {
     
     private static final String TAG_NAME = "name";

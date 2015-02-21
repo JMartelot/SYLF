@@ -8,7 +8,10 @@ import com.imie.sylf.view.tab.ProfilFragment;
 import com.imie.sylf.view.tab.RandomFragment;
 
 import android.os.Bundle;
-
+/**
+ * Activity Landing
+ * 
+ */
 public class LandingActivity extends TabSwipeActivity {
 
     @Override

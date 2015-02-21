@@ -10,34 +10,34 @@ import android.view.ViewGroup;
 import com.imie.sylf.R;
 import com.imie.sylf.view.genre.GenreListFragment;
 
-/** Genre list fragment.
- *
+/**
+ * Genre list fragment.
+ * 
  * This fragment gives you an interface to list all your Genres.
- *
+ * 
  * @see android.app.Fragment
  */
-public class GenreFragment extends Fragment{
-    
+public class GenreFragment extends Fragment {
 
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState) {
+	/**
+	 * Creation of the fragement Genre
+	 */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_genre, container, false);
-        
+		View view = inflater.inflate(R.layout.fragment_genre, container, false);
 
-        FragmentTransaction transaction = getFragmentManager()
-          .beginTransaction();
-        /*
-         * When this container fragment is created, we fill it with our first
-         * "real" fragment
-         */
-        transaction.replace(R.id.genre_fragment_list, new GenreListFragment());
+		FragmentTransaction transaction = getFragmentManager()
+				.beginTransaction();
+		/*
+		 * When this container fragment is created, we fill it with our first
+		 * "real" fragment
+		 */
+		transaction.replace(R.id.genre_fragment_list, new GenreListFragment());
 
-        transaction.commit();
+		transaction.commit();
 
-        return view;
-    }
+		return view;
+	}
 }

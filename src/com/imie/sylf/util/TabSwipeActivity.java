@@ -5,13 +5,22 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
+/**
+ * Class TabSwipe Activity
+ * @author Quentin
+ *
+ */
 public class TabSwipeActivity extends SherlockFragmentActivity {
 	private ViewPager mViewPager;
     private TabsAdapter adapter;
  
+    /**
+     * On create
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        /*
+        /**
          * Create the ViewPager and our custom adapter
          */
         mViewPager = new ViewPager(this);
@@ -19,7 +28,7 @@ public class TabSwipeActivity extends SherlockFragmentActivity {
         mViewPager.setAdapter( adapter );
         mViewPager.setOnPageChangeListener( adapter );
  
-        /*
+        /**
          * We need to provide an ID for the ViewPager, otherwise we will get an exception like:
          *
          * java.lang.IllegalArgumentException: No view found for id 0xffffffff for fragment TestFragment{40de5b90 #0 id=0xffffffff android:switcher:-1:0}
@@ -31,7 +40,7 @@ public class TabSwipeActivity extends SherlockFragmentActivity {
  
         super.onCreate(savedInstanceState);
  
-        /*
+        /**
          * Set the ViewPager as the content view
          */
         setContentView(mViewPager);

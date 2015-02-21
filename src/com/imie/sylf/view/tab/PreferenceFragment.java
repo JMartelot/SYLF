@@ -30,7 +30,13 @@ import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 import com.imie.sylf.view.show.ShowListFragment;
 
-
+/**
+ * Preference fragment.
+ * 
+ * This fragment your preference.
+ * 
+ * @see android.app.Fragment
+ */
 public class PreferenceFragment extends Fragment implements Parser<Show> {
 
     private static final String TAG_ID = "id";
@@ -51,6 +57,9 @@ public class PreferenceFragment extends Fragment implements Parser<Show> {
     private JSONArray shows = null;
     private View view = null;
 
+    /**
+     * Creation of  the fragement Genre
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater,

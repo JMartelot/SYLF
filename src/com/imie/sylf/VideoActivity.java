@@ -27,6 +27,11 @@ import com.imie.sylf.util.Config;
 import com.imie.sylf.util.Parser;
 import com.imie.sylf.util.WebServices;
 
+/**
+ * Video Activity
+ * @author Quentin
+ *
+ */
 public class VideoActivity extends YouTubeBaseActivity implements
 YouTubePlayer.OnInitializedListener, Parser<Show> {
 

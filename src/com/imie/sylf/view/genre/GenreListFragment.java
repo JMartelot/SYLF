@@ -54,6 +54,9 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
     private GenreAdapter adapter = null;
     private ListView lv = null;
 
+    /**
+     * Creation of the list genre
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater,
@@ -80,6 +83,9 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         
         lv.setOnItemClickListener(new OnItemClickListener(){
 
+        	/**
+        	 * Click on a item of the list genre
+        	 */
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                     long id) {
@@ -110,6 +116,9 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         return view;
     }
     
+    /**
+     * Parse Json 
+     */
     @Override
     public void parseJSON(String stream){
         if (stream != null) {
@@ -142,6 +151,9 @@ public class GenreListFragment extends Fragment implements Parser<Genre> {
         listPopulate(genreList);
     }
     
+    /**
+     * Initialization of the list of genre
+     */
     @Override
     public void listPopulate(List<Genre> liste) {
         

@@ -15,8 +15,16 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * Activity main of the application call all the tabs for the different fragement
+ * @author Quentin
+ *
+ */
 public class HomeActivity extends TabSwipeActivity {
 
+	/**
+	 * On create
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +40,11 @@ public class HomeActivity extends TabSwipeActivity {
 
     }
 
+    /**
+     * On create Option
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -40,6 +53,11 @@ public class HomeActivity extends TabSwipeActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * On create Option Item Selected
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_profil) {
@@ -48,6 +66,9 @@ public class HomeActivity extends TabSwipeActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Init UIL
+     */
     private void initUIL(){
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
@@ -62,6 +83,9 @@ public class HomeActivity extends TabSwipeActivity {
         ImageLoader.getInstance().init(config);
     }
     
+    /**
+     * Open of the profil
+     */
     private void openProfil(){
 
         Intent intent = new Intent(this, ProfilActivity.class);
